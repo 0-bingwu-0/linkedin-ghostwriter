@@ -3,6 +3,7 @@
 ## Before writing
 
 * Read [profile.md](../context/profile.md).
+* If the topic comes from my inbox, or from the idea bank (an idea's `from` lists its inbox days), read those day files in `inbox/` and use their details. That's what really happened.
 * Read related past posts in [linkedin_posts.md](../output/linkedin_posts.md). Learn the word choice, sentence length, openings, and formatting. Check what I've said before so I don't contradict myself, and build on it where you can.
 * If one detail only I would know would make the post much stronger, like a number, what someone said, or why I made a call, ask me for it first. Just that one question. If I don't have it, write without it.
 
@@ -32,5 +33,7 @@ Post text
 
 **First comment:** Comment text (if any)
 ```
+
+Then update the dashboard, as in [maintain.md](maintain.md): add the post as a draft, with the inbox days it came from in `from`, so they aren't suggested again, and remove the idea it came from.
 
 When editing, save changes in place. When I approve the post, turn it into X by following [repurpose.md](repurpose.md).

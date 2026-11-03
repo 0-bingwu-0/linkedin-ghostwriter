@@ -29,7 +29,7 @@ Keep the point, the facts, and my experiences from the LinkedIn post. Don't add 
 
 ## Saving
 
-Use the same topic name as the LinkedIn post, so the two are easy to match.
+Use the same date and topic as the LinkedIn post's heading, so the two match and the dashboard can link to both.
 
 | Content | Location and format |
 | --- | --- |
@@ -56,4 +56,4 @@ For a Thread, number each post, with a blank line between them:
 2/ Second post
 ```
 
-Save as soon as it's written, without asking. When editing, save changes in place.
+Save as soon as it's written, without asking. Then mark the LinkedIn post approved and add its X version on the dashboard, as in [maintain.md](maintain.md). When editing, save changes in place.
