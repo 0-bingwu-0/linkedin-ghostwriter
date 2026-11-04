@@ -86,10 +86,8 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
-  .ideas-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 14px; white-space: nowrap; }
-  .ideas-btn:hover { background: var(--hover); }
 
-  /* Ideas open from the right, over half the screen; they're jotted down, not the main view */
+  /* An idea opens from the right, over half the screen, with its plan */
   .side {
     position: fixed;
     top: 0;
@@ -107,17 +105,24 @@
     transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 0.28s;
   }
   .side.open { transform: none; visibility: visible; transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), visibility 0s; }
-  .side-head { display: flex; flex: none; align-items: center; gap: 8px; height: 52px; padding: 0 12px 0 20px; border-bottom: 1px solid var(--line); }
-  .side-head h2 { margin: 0; font-size: 16px; font-weight: 600; }
-  .side-close { display: grid; place-items: center; width: 28px; height: 28px; margin-left: auto; border-radius: 4px; color: var(--faint); }
-  .side-close:hover { background: var(--hover); color: var(--muted); }
-  .side-body { flex: 1; overflow-y: auto; padding: 14px 20px 60px; background: var(--lane-yellow); }
-  .side-body .cards { margin-top: 0; }
-  .side-body .empty { margin: 4px 2px; }
+  .side-bar { display: flex; flex: none; align-items: center; justify-content: space-between; height: 44px; padding: 0 10px; }
+  .icon-btn { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 4px; color: var(--faint); }
+  .icon-btn:hover { background: var(--hover); color: var(--muted); }
+  .icon-btn .i { width: 16px; height: 16px; }
+  .side-body { flex: 1; overflow-y: auto; padding: 16px 48px 60px; }
+  .side-icon { margin-bottom: 8px; font-size: 44px; line-height: 1.1; }
+  .side-title { margin: 0 0 14px; font-size: 26px; font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+  .prop { display: flex; align-items: center; min-height: 32px; font-size: 14px; }
+  .prop-name { flex: none; width: 110px; color: var(--muted); }
+  .divider { margin: 14px 0 8px; border: 0; border-top: 1px solid var(--line); }
+  .blk { margin: 18px 0 6px; font-size: 16px; font-weight: 600; }
+  .side-plan { margin: 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap; }
+  .side-plan.none { color: var(--faint); }
 
   /* Board: one tinted column per status, each with a status pill on top */
-  .board { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); gap: 12px; align-items: start; }
+  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 360px)); gap: 12px; align-items: start; }
   .lane { min-width: 0; padding: 6px 6px 8px; border-radius: 8px; background: var(--lane); }
+  .lane.yellow { --lane: var(--lane-yellow); }
   .lane.blue { --lane: var(--lane-blue); }
   .lane.green { --lane: var(--lane-green); }
   .lane-head { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px; }
@@ -131,13 +136,12 @@
   .card-head { display: flex; align-items: flex-start; gap: 7px; }
   .card-icon { flex: none; width: 18px; font-size: 14px; line-height: 20px; text-align: center; }
   .card-title { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; overflow-wrap: anywhere; }
+  button.card { width: 100%; text-align: left; }
+  button.card:hover { background: color-mix(in srgb, var(--card), var(--text) 3%); }
+  button.card[aria-expanded="true"] { box-shadow: 0 0 0 1.5px var(--d-yellow), var(--card-shadow); }
   a.card-title { text-decoration: none; }
   a.card-title:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
-  .plan { display: -webkit-box; margin: 0; overflow: hidden; color: var(--muted); font-size: 13px; line-height: 1.45; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
   .when { color: var(--muted); font-size: 12px; }
-  .drop { display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 4px; color: var(--faint); opacity: 0; }
-  .card:hover .drop, .drop:focus-visible { opacity: 1; }
-  .drop:hover { background: var(--hover); color: var(--muted); }
   /* One click marks a draft posted; clicking again takes it back */
   .check { display: grid; place-items: center; flex: none; width: 16px; height: 16px; margin: 2px 1px 0; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-strong); color: transparent; }
   .check:hover { box-shadow: inset 0 0 0 1.5px var(--d-green); color: var(--d-green); }
@@ -176,9 +180,6 @@
   .danger-btn { height: 28px; padding: 0 12px; border-radius: 6px; background: var(--d-coral); color: #fff; font-size: 14px; font-weight: 600; }
   .danger-btn:hover { filter: brightness(0.94); }
 
-  @media (hover: none) {
-    .drop { opacity: 1; }
-  }
   @media (max-width: 1040px) {
     .page { padding: 0 40px 96px; }
   }
@@ -188,6 +189,7 @@
   @media (max-width: 760px) {
     .board { grid-template-columns: minmax(0, 1fr); }
     .side { width: 100vw; }
+    .side-body { padding: 16px 22px 60px; }
   }
   @media (max-width: 640px) {
     .page { padding: 0 18px 80px; }
@@ -216,10 +218,13 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
-      <button type="button" class="ideas-btn" data-open-ideas aria-controls="side" aria-expanded="false"><span aria-hidden="true">💡</span>Ideas<span class="count" id="n-ideas"></span></button>
     </div>
 
     <div class="board" id="board">
+      <section class="lane yellow" aria-label="Ideas">
+        <div class="lane-head"><span class="tag status k-yellow">Ideas</span><span class="count" id="n-ideas"></span></div>
+        <div id="ideas"></div>
+      </section>
       <section class="lane blue" aria-label="Drafts">
         <div class="lane-head"><span class="tag status k-blue">Drafts</span><span class="count" id="n-drafts"></span></div>
         <div id="drafts"></div>
@@ -232,12 +237,12 @@
     <div id="table" hidden></div>
   </main>
 
-  <aside class="side" id="side" aria-label="Ideas" inert>
-    <div class="side-head">
-      <span aria-hidden="true">💡</span><h2>Ideas</h2>
-      <button type="button" class="side-close" data-close-ideas aria-label="Close" title="Close"><span data-icon="x"></span></button>
+  <aside class="side" id="side" aria-label="Idea" inert>
+    <div class="side-bar">
+      <button type="button" class="icon-btn" data-close-side aria-label="Close" title="Close"><span data-icon="close"></span></button>
+      <button type="button" class="icon-btn" data-drop-open aria-label="Drop this idea" title="Drop this idea"><span data-icon="trash"></span></button>
     </div>
-    <div class="side-body" id="ideas"></div>
+    <div class="side-body" id="side-body"></div>
   </aside>
 
   <div class="modal" id="modal" hidden>
@@ -262,7 +267,8 @@
   const POSTS_DIR = "posts/";
   const POSTED_SHOWN = 6;
   const PATHS = {
-    x: '<path d="m4.5 4.5 7 7M11.5 4.5l-7 7"/>',
+    close: '<path d="M3.5 3.5 8 8l-4.5 4.5M8.5 3.5 13 8l-4.5 4.5"/>',
+    trash: '<path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/>',
     check: '<path d="m3 8.5 3.2 3L13 4.5"/>',
     board: '<rect x="2" y="3" width="3.4" height="10" rx="1"/><rect x="6.3" y="3" width="3.4" height="7" rx="1"/><rect x="10.6" y="3" width="3.4" height="8.5" rx="1"/>',
     table: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M2 9.8h12M6.5 6.5V13"/>',
@@ -322,6 +328,7 @@
   let toastKind = "";
   let view = "board";
   let allPosted = false;
+  let openAt = null; // the idea open on the right, by its place in the file
 
   /* ---------- Saving: each change goes to the shared draft at once, and to the file after a short pause ---------- */
 
@@ -383,7 +390,7 @@
   function renderSay() {
     // "Set me up" only while the template's example is still here.
     const steps = [data.example && "Set me up.", "I have an idea: …", "Write about …"].filter(Boolean);
-    $("#start").innerHTML = `<span>Say in Chat</span>${steps.map((say) => `<b>“${esc(say)}”</b>`).join("")}`;
+    $("#start").innerHTML = `<span aria-hidden="true">💬</span><span>Say in Chat</span>${steps.map((say) => `<b>“${esc(say)}”</b>`).join("")}`;
   }
 
   const postLink = (p, cls) => (p.file
@@ -391,16 +398,23 @@
     : `<span class="${cls}">${esc(p.title)}</span>`);
   const statusTag = (p) => (p.posted ? '<span class="tag status k-green">Posted</span>' : '<span class="tag status k-blue">Draft</span>');
 
+  // An idea shows just its line on the board; click it to see the plan on the right.
   function ideaCard(i) {
-    return `<div class="card">
-      <div class="card-head">
-        <span class="card-icon" aria-hidden="true">💡</span>
-        <p class="card-title">${esc(i.idea)}</p>
-        <button type="button" class="drop" data-drop="${i.at}" aria-label="Drop this idea" title="Drop this idea">${icon("x")}</button>
-      </div>
-      ${i.plan ? `<p class="plan" title="${esc(i.plan)}">${esc(i.plan)}</p>` : ""}
-      ${i.date ? `<span class="when">${esc(longDate(i.date))}</span>` : ""}
-    </div>`;
+    return `<button type="button" class="card" data-idea="${i.at}" aria-expanded="${openAt === i.at}">
+      <span class="card-head"><span class="card-icon" aria-hidden="true">💡</span><span class="card-title">${esc(i.idea)}</span></span>
+    </button>`;
+  }
+
+  function renderSide() {
+    const i = data.ideas.find((x) => x.at === openAt);
+    if (!i) return closeSide();
+    $("#side-body").innerHTML = `
+      <div class="side-icon" aria-hidden="true">💡</div>
+      <h2 class="side-title">${esc(i.idea)}</h2>
+      ${i.date ? `<div class="prop"><span class="prop-name">Added</span><span>${esc(longDate(i.date))}</span></div>` : ""}
+      <hr class="divider">
+      <h3 class="blk">Plan</h3>
+      ${i.plan ? `<p class="side-plan">${esc(i.plan)}</p>` : '<p class="side-plan none">No plan yet.</p>'}`;
   }
 
   function postCard(p) {
@@ -454,6 +468,7 @@
     $("#table").hidden = view !== "table";
     renderBoard();
     renderTable();
+    if (openAt !== null) renderSide();
   }
 
   /* ---------- Changes from the page ---------- */
@@ -471,6 +486,7 @@
     const ok = await ask("Drop this idea?", `<p>“${esc(str(i.idea))}” will be gone from your ideas.</p>`, "Drop");
     if (!ok || arr(raw.ideas)[at] !== i) return;
     raw.ideas.splice(at, 1);
+    closeSide();
     commit();
   }
 
@@ -500,36 +516,40 @@
     else if (event.target === modalEl) closeModal(false);
   });
   const sideEl = $("#side");
-  function openIdeas() {
+  function openSide(at) {
+    openAt = at;
+    renderSide();
+    renderBoard();
+    $("#side-body").scrollTop = 0;
     sideEl.classList.add("open");
     sideEl.removeAttribute("inert");
-    $("[data-open-ideas]").setAttribute("aria-expanded", "true");
-    sideEl.querySelector("[data-close-ideas]").focus({ preventScroll: true });
+    sideEl.querySelector("[data-close-side]").focus({ preventScroll: true });
   }
-  function closeIdeas() {
-    if (!sideEl.classList.contains("open")) return;
+  function closeSide() {
+    if (openAt === null && !sideEl.classList.contains("open")) return;
+    openAt = null;
     sideEl.classList.remove("open");
     sideEl.setAttribute("inert", "");
-    $("[data-open-ideas]").setAttribute("aria-expanded", "false");
+    renderBoard();
   }
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
     if (!modalEl.hidden) closeModal(false);
-    else closeIdeas();
+    else closeSide();
   });
-  // A click anywhere else closes the panel.
+  // A click anywhere else closes the panel; clicking another idea switches to it.
   document.addEventListener("pointerdown", (event) => {
-    if (!sideEl.contains(event.target) && !event.target.closest("[data-open-ideas], .modal, .toast")) closeIdeas();
+    if (openAt !== null && !sideEl.contains(event.target) && !event.target.closest("[data-idea], .modal, .toast")) closeSide();
   });
 
   document.addEventListener("click", (event) => {
     const t = event.target;
     const check = t.closest("[data-check]");
     if (check) return togglePosted(Number(check.dataset.check));
-    const drop = t.closest("[data-drop]");
-    if (drop) return dropIdea(Number(drop.dataset.drop));
-    if (t.closest("[data-open-ideas]")) return sideEl.classList.contains("open") ? closeIdeas() : openIdeas();
-    if (t.closest("[data-close-ideas]")) return closeIdeas();
+    const idea = t.closest("[data-idea]");
+    if (idea) return openSide(Number(idea.dataset.idea));
+    if (t.closest("[data-close-side]")) return closeSide();
+    if (t.closest("[data-drop-open]")) return dropIdea(openAt);
     const tab = t.closest("[data-view]");
     if (tab) {
       view = tab.dataset.view;
