@@ -3,9 +3,11 @@
 ## Before writing
 
 * Read [profile.md](../context/profile.md).
-* If the topic comes from my inbox, or from the idea bank (an idea's `from` lists its inbox days), read those day files in `inbox/` and use their details. That's what really happened.
-* Read related past posts in [linkedin_posts.md](../output/linkedin_posts.md). Learn the word choice, sentence length, openings, and formatting. Check what I've said before so I don't contradict myself, and build on it where you can.
-* If one detail only I would know would make the post much stronger, like a number, what someone said, or why I made a call, ask me for it first. Just that one question. If I don't have it, write without it.
+* Start from my idea: the one I just gave you, or the one from my ideas on the dashboard I want to write. That's the point of the post. If it has a plan, follow it.
+* If it's part of a series, read the plan and the posts already written in it. Cover only this post's part, don't repeat what earlier posts said, and point back to them where it helps.
+* Find examples that back it up in `context/work/`. Use their details. That's what really happened.
+* Read related past posts in `posts/`. Learn the word choice, sentence length, openings, and formatting. Check what I've said before so I don't contradict myself, and build on it where you can.
+* If the examples are thin or missing, ask me for what the post needs, all in one message: specific details, like which PR, what broke, a number, or what a maintainer said. If I send a link, like a PR, read it. If I don't have something, write without it.
 
 ## Writing
 
@@ -24,16 +26,16 @@ Follow the writing style in [profile.md](../context/profile.md) and the rules in
 
 ## Saving
 
-Save it at the top of [linkedin_posts.md](../output/linkedin_posts.md) as soon as it's written, without asking:
+Save it as its own file in `posts/` as soon as it's written, without asking. Name it `YYYY-MM-DD-<slug>.md`: today's date, then a few words of the title in lowercase, joined by hyphens, like `2026-11-04-first-month-sending-prs.md`.
 
 ```markdown
-## YYYY-MM-DD · Topic
+# Title
 
 Post text
 
 **First comment:** Comment text (if any)
 ```
 
-Then update the dashboard, as in [maintain.md](maintain.md): add the post as a draft, with the inbox days it came from in `from`, so they aren't suggested again, and remove the idea it came from.
+Then add it to the dashboard as a draft, as in [maintain.md](maintain.md#format): its date, title, file name, and series if it's in one. Then, in your reply, suggest removing the idea it came from, and remove it if I agree. For a series, update the plan instead, and suggest removing the idea once the last post is written.
 
-When editing, save changes in place. When I approve the post, turn it into X by following [repurpose.md](repurpose.md).
+When editing, save changes in the post's file.

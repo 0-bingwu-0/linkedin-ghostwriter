@@ -1,47 +1,15 @@
 {
   "schemaVersion": 1,
   "example": true,
-  "focus": "What I learn about AI as a student who builds with it",
-  "angles": [
-    {"id": "built", "name": "What I built"},
-    {"id": "tried", "name": "Tools, tried for real"},
-    {"id": "wish", "name": "What I wish I'd known"}
-  ],
-  "inbox": [
-    {"date": "2026-11-02", "summary": "Got my OS midterm back (84), and my roommate's databases slides broke the study helper."},
-    {"date": "2026-10-30", "summary": "Fixed the language bug with one line, then reran all 41 test questions."},
-    {"date": "2026-10-28", "summary": "A first-year asked me how to start learning AI, and my answer was messy."},
-    {"date": "2026-10-26", "summary": "Tried a cheaper model for quiz mode. Fine questions, way too generous grading."},
-    {"date": "2026-10-23", "summary": "Took my OS midterm. Having the study helper quiz me beat asking it questions."},
-    {"date": "2026-10-19", "summary": "Added lecture titles to every chunk, and stopped it making up exam answers."},
-    {"date": "2026-10-16", "summary": "Shared the study helper with 12 classmates. They asked things I never tested."},
-    {"date": "2026-10-12", "summary": "A new model got 17 of my 20 questions to my setup's 16, at 3x the cost. Not switching."},
-    {"date": "2026-10-09", "summary": "First AI club meeting. I couldn't explain what makes something an agent."},
-    {"date": "2026-10-05", "summary": "Started asking ChatGPT for hints instead of solutions."},
-    {"date": "2026-10-02", "summary": "Took my first algorithms quiz without ChatGPT. It went badly."},
-    {"date": "2026-09-30", "summary": "My OS professor is fine with AI for studying, as long as we can explain our answers."},
-    {"date": "2026-09-27", "summary": "The study helper was wrong half the time, so I wrote 20 test questions."},
-    {"date": "2026-09-25", "summary": "Section-sized chunks and slides-only answers made the study helper much better."},
-    {"date": "2026-09-21", "summary": "Rewrote my parser myself. Messier, but I can explain every line."},
-    {"date": "2026-09-18", "summary": "At office hours I couldn't explain the parser the AI wrote for me."},
-    {"date": "2026-09-13", "summary": "Got the first version of my study helper answering from my OS slides."},
-    {"date": "2026-09-06", "summary": "Searched my OS notes with embeddings, and they finally clicked."},
-    {"date": "2026-09-03", "summary": "Read about embeddings for the third time. Still didn't get it."}
-  ],
   "ideas": [
-    {"date": "2026-11-02", "title": "My midterm came back, and the quiz mode was right", "from": ["2026-11-02"], "angle": "built"},
-    {"date": "2026-10-30", "title": "One line fixed my language bug, mostly", "from": ["2026-10-30"], "angle": "built"},
-    {"date": "2026-10-26", "title": "A cheaper model writes fine quizzes but grades too nicely", "from": ["2026-10-26"], "angle": "tried"},
-    {"date": "2026-10-09", "title": "I couldn't explain what an AI agent is", "from": ["2026-10-09"], "angle": "wish"}
+    {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "series": true, "plan": "An intro, three examples, one per post, and a wrap-up. The first example is the verifier that passed when it should have failed. The other two aren't picked yet."},
+    {"date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": ""},
+    {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from my biggest PR, still open after three weeks, and a two-line fix that was merged the same day."}
   ],
   "posts": [
-    {"date": "2026-09-08", "topic": "Embeddings finally clicked when I searched my own notes", "from": ["2026-09-03", "2026-09-06"], "angle": "wish", "status": "approved", "posted": "2026-09-08", "url": null, "impressions": 1240, "engagements": 38, "x": {"format": "thread"}},
-    {"date": "2026-09-22", "topic": "I let AI write my parser, then went to office hours", "from": ["2026-09-18", "2026-09-21"], "angle": "tried", "status": "approved", "posted": "2026-09-22", "url": null, "impressions": 2980, "engagements": 121, "x": {"format": "post"}},
-    {"date": "2026-09-28", "topic": "What broke in my first RAG project", "from": ["2026-09-13", "2026-09-25", "2026-09-27"], "angle": "built", "status": "approved", "posted": "2026-09-29", "url": null, "impressions": 6420, "engagements": 263, "x": {"format": "article", "file": "2026-09-28-what-broke-in-my-first-rag-project.md"}},
-    {"date": "2026-10-06", "topic": "I stopped asking AI for answers", "from": ["2026-10-02", "2026-10-05"], "angle": "wish", "status": "approved", "posted": "2026-10-06", "url": null, "impressions": 4150, "engagements": 187, "x": {"format": "post"}},
-    {"date": "2026-10-13", "topic": "A new model came out, so I ran my 20 questions", "from": ["2026-10-12"], "angle": "tried", "status": "approved", "posted": "2026-10-14", "url": null, "impressions": 1870, "engagements": 52, "x": {"format": "post"}},
-    {"date": "2026-10-20", "topic": "12 classmates used my study helper", "from": ["2026-10-16", "2026-10-19"], "angle": "built", "status": "approved", "posted": "2026-10-21", "url": null, "impressions": 3560, "engagements": 171, "x": {"format": "thread"}},
-    {"date": "2026-10-27", "topic": "I studied for my midterm with the tool I built", "from": ["2026-10-23"], "angle": "built", "status": "approved", "posted": null, "url": null, "impressions": null, "engagements": null, "x": {"format": "post"}},
-    {"date": "2026-10-29", "topic": "What I'd tell first-years about learning AI", "from": ["2026-10-28"], "angle": "wish", "status": "draft", "posted": null, "url": null, "impressions": null, "engagements": null, "x": null}
+    {"date": "2026-11-04", "title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "series": "Done means something different in someone else's project", "posted": null},
+    {"date": "2026-11-04", "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04"},
+    {"date": "2026-10-14", "title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": "2026-10-14"},
+    {"date": "2026-09-22", "title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": "2026-09-22"}
   ]
 }

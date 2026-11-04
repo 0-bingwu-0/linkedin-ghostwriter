@@ -1,20 +1,17 @@
 # Set Me Up
 
-Make this project mine through a short Q&A. Ask these one at a time, and wait for each answer before asking the next. Keep each question to a sentence or two, with a quick example if it helps.
+Make this project mine with a few quick questions, so we can get to my first post. Ask these one at a time, and wait for each answer before asking the next. Keep each question to a sentence or two, with a quick example if it helps.
 
-1. **Who are you?** What you do, and what you're working on.
-2. **What do you want to post about on LinkedIn?** The topics, and how you look at them.
-3. **Who do you want to reach, and what do you want from posting?** For example, finding a job, winning clients, growing a product, or meeting people in your field.
-4. **How do you want to sound?** Pasting a few of your past LinkedIn posts, or posts you like from others, works best.
-5. **Anything to avoid?** Topics, words, or styles.
-6. **Do you have X Premium?** It decides whether long X posts and X Articles are on the table.
+1. **Who are you, and what are you working on?** What you do, and the projects you might post about.
+2. **What do you want to post about, and why?** The topics, and what you want from posting, like finding a job, winning clients, or meeting people in your field.
+3. **Can you paste a few of your past LinkedIn posts?** Three to five that sound most like you. Posts you like from others work too. It's fine to skip this.
 
 If my setup message already answers some of these, skip them. If it includes standing instructions, like a hashtag for every post, save them to the writing style.
 
 Then, in one go:
 
-* Rewrite [profile.md](../context/profile.md) from my answers, in my own words, under its headings. Drop the example content. Keep it short and specific.
-* If I pasted my own past posts, put them in [linkedin_posts.md](../output/linkedin_posts.md), or [x_posts.md](../output/x_posts.md) for X posts. Remove the example posts in both files, and delete the example Article in [x_articles/](../output/x_articles/).
-* Delete the example days in `inbox/`, every file in it.
-* Clear the example out of [posts.json](../assets/posts.json): remove `example`, and every inbox day, idea, and post. Then set `focus` and `angles` from my answers, and add the past LinkedIn posts I gave you, as in [maintain.md](maintain.md).
-* Tell me it's done in a sentence or two, and that from now on I can just tell you what I did each day: you'll keep it in my inbox and suggest topics from it. Also mention that I can paste more past posts into `output/linkedin_posts.md`, and that once my posts are out, I can export my LinkedIn analytics into `stats/` and say "Update my stats." to see how each one did. Then ask what I've been working on or learning lately, and follow [daily.md](daily.md) with my answer.
+* Delete the example: every file in `context/work/` and `posts/`, and in [posts.json](../assets/posts.json), `example` and every idea and post.
+* Rewrite [profile.md](../context/profile.md) from my answers, in my own words, under its headings. Drop the example content and the line about it. Keep it short and specific. Take the writing style from the posts I pasted; without them, keep the example's writing style as a start, in the language I write to you in.
+* Record what I told you about my work in `context/work/`, as in [AGENTS.md](../AGENTS.md#work-notes).
+* Save each of my own past posts to `posts/`, as in [write.md](write.md#saving). Name it with the day it went out if I said, or else just a few words of its title. Add each to the dashboard as posted, as in [maintain.md](maintain.md#format). Posts from others aren't saved; they only shape the writing style.
+* Tell me it's done in a sentence or two, with what you recorded and where, as in [AGENTS.md](../AGENTS.md#keeping-my-files). Then ask what I'd like to post about first: something about my work I want to say. A sentence is enough. When I answer, follow [idea.md](idea.md).

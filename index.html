@@ -14,21 +14,19 @@
     --line: rgba(55, 53, 47, 0.09);
     --line-strong: rgba(55, 53, 47, 0.22);
     --hover: rgba(55, 53, 47, 0.06);
-    --hover-soft: rgba(55, 53, 47, 0.03);
     --pop: #ffffff;
     --pop-shadow: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 3px 6px, rgba(15, 15, 15, 0.2) 0 9px 24px;
-    --track: rgba(55, 53, 47, 0.08);
-    /* The colors every gallery dashboard shares: coral, yellow, and green, plus the lavender that is this banner's background.
-       Headings, tags, and charts use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable.
-       Here each one also means a stage: green is the inbox, yellow an idea, lavender a post. */
-    --banner: #c7bdea;
-    --c-coral: rgba(229, 130, 131, 0.42); --c-yellow: rgba(242, 228, 157, 0.5); --c-green: rgba(206, 231, 170, 0.5); --c-lav: rgba(199, 189, 234, 0.5);
-    --c-gray: #f1f1ef;
+    --card: #ffffff;
+    --card-shadow: rgba(15, 15, 15, 0.07) 0 0 0 1px, rgba(15, 15, 15, 0.07) 0 2px 4px;
+    /* The Workout Tracker's colors: coral, yellow, and green, plus the teal of the banner's background.
+       Headings and tags use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
+    --banner: #b4e0db;
+    --c-coral: rgba(229, 130, 131, 0.42); --c-yellow: rgba(242, 228, 157, 0.5); --c-green: rgba(206, 231, 170, 0.5); --c-teal: rgba(179, 227, 223, 0.5);
     --t-gray: rgba(227, 226, 224, 0.6); --f-gray: #32302c; --d-gray: #91918e;
     --t-coral: rgba(229, 130, 131, 0.3); --f-coral: #6b2a2b; --d-coral: #d9686a;
     --t-yellow: rgba(242, 228, 157, 0.65); --f-yellow: #5c4d12; --d-yellow: #cfb23a;
     --t-green: rgba(206, 231, 170, 0.7); --f-green: #35501a; --d-green: #86b856;
-    --t-lav: rgba(199, 189, 234, 0.55); --f-lav: #352a5c; --d-lav: #8f7fd0;
+    --t-teal: rgba(179, 227, 223, 0.65); --f-teal: #1f4f4b; --d-teal: #5fb3ab;
     --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Apple Color Emoji", Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
@@ -41,18 +39,17 @@
       --line: rgba(255, 255, 255, 0.094);
       --line-strong: rgba(255, 255, 255, 0.22);
       --hover: rgba(255, 255, 255, 0.055);
-      --hover-soft: rgba(255, 255, 255, 0.03);
       --pop: #252525;
       --pop-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 6px, rgba(0, 0, 0, 0.45) 0 9px 24px;
-      --track: rgba(255, 255, 255, 0.07);
-      --c-coral: rgba(229, 130, 131, 0.24); --c-yellow: rgba(242, 228, 157, 0.2); --c-green: rgba(206, 231, 170, 0.2); --c-lav: rgba(199, 189, 234, 0.22);
-      --c-gray: #262626;
+      --card: #252525;
+      --card-shadow: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 4px;
+      --c-coral: rgba(229, 130, 131, 0.24); --c-yellow: rgba(242, 228, 157, 0.2); --c-green: rgba(206, 231, 170, 0.2); --c-teal: rgba(179, 227, 223, 0.18);
       --t-gray: #3f4245;
-      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-lav: rgba(199, 189, 234, 0.24);
+      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-teal: rgba(179, 227, 223, 0.2);
       --f-gray: rgba(255, 255, 255, 0.86);
-      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-lav: var(--f-gray);
+      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-teal: var(--f-gray);
       --d-gray: #8f8f8f;
-      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-lav: #c7bdea;
+      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-teal: #b3e3df;
     }
   }
   * { box-sizing: border-box; }
@@ -64,10 +61,10 @@
   a { color: inherit; }
   :focus-visible { outline: 2px solid rgba(35, 131, 226, 0.6); outline-offset: 1px; border-radius: 4px; }
   .i { width: 14px; height: 14px; flex: none; }
-  .muted { color: var(--muted); }
 
-  /* Error notice: hidden unless the data can't load or the script fails */
+  /* Error notice: hidden unless the data can't load, a save fails, or the script fails */
   .toast { position: fixed; right: 16px; bottom: 16px; z-index: 60; display: flex; align-items: center; gap: 8px; max-width: calc(100vw - 32px); padding: 8px 12px; border-radius: 6px; background: var(--pop); box-shadow: var(--pop-shadow); color: #d44c47; font-size: 14px; }
+  .toast.calm { color: var(--muted); }
   .toast button { height: 26px; padding: 0 8px; border-radius: 4px; color: var(--text); }
   .toast button:hover { background: var(--hover); }
 
@@ -79,10 +76,10 @@
   .page { max-width: 1400px; margin: 0 auto; padding: 0 72px 120px; }
   .page-icon { display: block; width: 104px; height: 104px; margin: 44px 0 0 -4px; font-size: 88px; line-height: 104px; user-select: none; }
   .title { margin: 18px 0 14px; font-size: 40px; font-weight: 700; line-height: 1.2; }
-  /* Header: title and angle on the left; on the right, a sticky note with what to say in Chat */
-  .head { display: grid; grid-template-columns: minmax(0, 66fr) minmax(0, 34fr); gap: 40px; align-items: start; margin: 0 0 30px; }
-  .head-main { min-width: 0; }
-  .callout.focus { display: inline-flex; max-width: 100%; }
+  /* Header and board share three columns, so the sticky note sits over the last lane */
+  .head, .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
+  .head { margin: 0 0 30px; }
+  .head-main { grid-column: span 2; min-width: 0; }
   .note { position: relative; margin-top: -4px; padding: 14px 16px 12px; border-radius: 4px; background: #fffaf0; color: #3d3a32; box-shadow: 0 0 0 1px rgba(60, 50, 20, 0.08), 0 6px 16px rgba(60, 50, 20, 0.1); }
   .note::before { content: ""; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: #d9686a; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); transform: translateX(-50%); }
   .note h3 { margin: 0 0 6px; color: rgba(61, 58, 50, 0.6); font-size: 12px; font-weight: 600; }
@@ -90,87 +87,68 @@
   .note p + p { margin-top: 6px; }
   .note strong { font-weight: 600; }
   .note span { color: rgba(61, 58, 50, 0.65); }
-  .columns { display: grid; grid-template-columns: minmax(0, 66fr) minmax(0, 34fr); gap: 40px; align-items: start; }
-  .col { min-width: 0; }
-  .section + .section { margin-top: 44px; }
 
-  /* Callouts */
-  .callout { display: flex; align-items: center; gap: 10px; padding: 12px 16px 12px 14px; border-radius: 6px; background: var(--c-gray); }
+  /* Lanes: ideas waiting, drafts to post, and what's out */
+  .lane { min-width: 0; }
+  .callout { display: flex; align-items: center; gap: 10px; padding: 12px 16px 12px 14px; border-radius: 6px; }
   .callout.yellow { background: var(--c-yellow); }
+  .callout.coral { background: var(--c-coral); }
   .callout.green { background: var(--c-green); }
-  .callout.lav { background: var(--c-lav); }
   .callout h2 { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.3; }
-  .callout p { margin: 0; }
+  .count { margin-left: auto; color: var(--muted); font-size: 14px; }
   .emoji { width: 22px; flex: none; font-size: 18px; line-height: 1; text-align: center; }
-  .empty { margin: 12px 2px; color: var(--muted); font-size: 14px; }
+  .cards { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+  .empty { margin: 14px 2px; color: var(--muted); font-size: 14px; }
+  .more { height: 28px; margin-top: 8px; padding: 0 8px; border-radius: 4px; color: var(--muted); font-size: 14px; }
+  .more:hover { background: var(--hover); }
 
-  /* Tags, chips, and links */
+  /* Cards, like the Workout Tracker's */
+  .card { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 10px 12px 11px; border-radius: 6px; background: var(--card); box-shadow: var(--card-shadow); }
+  .card-head { display: flex; align-items: flex-start; gap: 8px; }
+  .card-title { flex: 1; min-width: 0; margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+  a.card-title { text-decoration: none; }
+  a.card-title:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+  .plan { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+  .meta:empty { display: none; }
+  .when { color: var(--faint); font-size: 12px; }
+  .drop { display: grid; place-items: center; flex: none; width: 22px; height: 22px; margin: -1px -4px 0 0; border-radius: 4px; color: var(--faint); opacity: 0; }
+  .card:hover .drop, .drop:focus-visible { opacity: 1; }
+  .drop:hover { background: var(--hover); color: var(--muted); }
+  /* One click marks a draft posted; clicking again takes it back */
+  .check { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-strong); color: transparent; }
+  .check:hover { box-shadow: inset 0 0 0 1.5px var(--d-green); color: var(--d-green); }
+  .check.on { background: var(--d-green); box-shadow: none; color: #fff; }
+  .check .i { width: 11px; height: 11px; }
+
   .tag { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 20px; padding: 0 6px; border-radius: 3px; background: var(--tb); color: var(--tf); font-size: 12px; line-height: 20px; white-space: nowrap; }
+  .tag > span { overflow: hidden; text-overflow: ellipsis; }
   .tag.status { padding: 0 8px 0 7px; border-radius: 10px; }
   .tag.status::before { content: ""; width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--td); }
   .k-gray { --tb: var(--t-gray); --tf: var(--f-gray); --td: var(--d-gray); }
+  .k-coral { --tb: var(--t-coral); --tf: var(--f-coral); --td: var(--d-coral); }
   .k-yellow { --tb: var(--t-yellow); --tf: var(--f-yellow); --td: var(--d-yellow); }
   .k-green { --tb: var(--t-green); --tf: var(--f-green); --td: var(--d-green); }
-  .k-lav { --tb: var(--t-lav); --tf: var(--f-lav); --td: var(--d-lav); }
-  .chip { display: inline-flex; align-items: center; height: 20px; padding: 0 6px; border-radius: 3px; background: var(--hover); font-size: 12px; white-space: nowrap; text-decoration: none; }
-  .chip:hover { background: var(--line-strong); }
-  .link { border-bottom: 1px solid var(--line-strong); text-decoration: none; }
-  .link:hover { border-bottom-color: var(--text); }
-  /* What a day turned into: one line each, cut short if the title is long */
-  .pill { display: inline-block; max-width: 100%; height: 24px; padding: 0 8px; border-radius: 4px; background: var(--tb); color: var(--tf); font-size: 13px; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; vertical-align: top; text-decoration: none; }
-  a.pill:hover, button.pill:hover { box-shadow: inset 0 0 0 1px var(--td); }
-  button.pill { text-align: left; }
-  /* An idea picked from the inbox glows once in the bank, so it's easy to spot */
-  .row.found { animation: found 1.6s ease-out; }
-  @keyframes found { from { background: var(--c-yellow); } to { background: transparent; } }
-  @media (prefers-reduced-motion: reduce) { .row.found { animation: none; background: var(--c-yellow); } }
-  .more { height: 28px; margin: 6px 0 0; padding: 0 8px; border-radius: 4px; color: var(--muted); font-size: 14px; }
-  .more:hover { background: var(--hover); }
+  .k-teal { --tb: var(--t-teal); --tf: var(--f-teal); --td: var(--d-teal); }
 
-  /* Inbox: a square for every day, colored by how far that day went */
-  .inbox-top { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px 40px; margin: 18px 2px 10px; }
-  .cal { --cell: 20px; --gap: 5px; max-width: 100%; overflow-x: auto; padding: 3px; }
-  .cal-grid { display: grid; grid-template-columns: 30px auto; grid-template-rows: 20px auto; column-gap: 6px; }
-  .cal-months, .cal-days { display: grid; grid-auto-flow: column; grid-auto-columns: var(--cell); column-gap: var(--gap); }
-  .cal-months span { color: var(--faint); font-size: 11px; line-height: 14px; white-space: nowrap; }
-  .cal-days { grid-template-rows: repeat(7, var(--cell)); row-gap: var(--gap); }
-  .cal-dow { display: grid; grid-template-rows: repeat(7, var(--cell)); row-gap: var(--gap); color: var(--faint); font-size: 11px; line-height: var(--cell); }
-  .day { display: block; border-radius: 4px; background: var(--track); }
-  .day.later { visibility: hidden; }
-  .day.is-today { outline: 1.5px solid var(--muted); outline-offset: 1.5px; }
-  a.day:hover { opacity: 0.7; }
-  .s-logged { background: var(--d-green); }
-  .s-idea { background: var(--d-yellow); }
-  .s-post { background: var(--d-lav); }
-  .tally { flex: 1 1 240px; min-width: 0; max-width: 400px; padding-top: 16px; }
-  .tally p { margin: 0 0 12px; font-size: 15px; }
-  .tally b { font-weight: 600; }
-  .nudge { color: var(--muted); }
-  .nudge.done { color: var(--f-green); font-weight: 500; }
-  .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: 12px; }
-  .legend span { display: inline-flex; align-items: center; gap: 6px; }
-  .sw { width: 10px; height: 10px; border-radius: 2px; }
+  /* Confirm dialog: StashBase blocks the browser's own confirm(), so it's built into the page */
+  .modal { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; padding: 16px; background: rgba(15, 15, 15, 0.4); }
+  .modal-card { width: min(420px, 100%); padding: 20px 20px 16px; border-radius: 10px; background: var(--pop); box-shadow: var(--pop-shadow); }
+  .modal-card h3 { margin: 0 0 8px; font-size: 16px; font-weight: 600; }
+  .modal-body { color: var(--muted); font-size: 14px; }
+  .modal-body p { margin: 0 0 8px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+  .ghost-btn { height: 28px; padding: 0 12px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 14px; }
+  .ghost-btn:hover { background: var(--hover); }
+  .danger-btn { height: 28px; padding: 0 12px; border-radius: 6px; background: var(--d-coral); color: #fff; font-size: 14px; font-weight: 600; }
+  .danger-btn:hover { filter: brightness(0.94); }
 
-  /* Inbox: one line per day, each opening that day's file */
-  .days { margin-top: 18px; }
-  .timeline { max-width: 760px; margin: 0; padding: 0; list-style: none; }
-  .entry { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 4px 14px; padding: 11px 2px; border-top: 1px solid var(--line); }
-  .when { display: flex; align-items: center; gap: 8px; height: 24px; color: var(--muted); font-size: 14px; white-space: nowrap; }
-  .what { min-width: 0; line-height: 24px; }
-  .what > a { text-decoration: none; }
-  .what > a:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
-  .out { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-
-  /* Ideas and posts */
-  .list { margin-top: 6px; }
-  .row { padding: 11px 2px; border-bottom: 1px solid var(--line); }
-  .row-title { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.4; }
-  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-top: 6px; }
-  .from, .seen { color: var(--muted); font-size: 12px; }
-  .hint { margin: 10px 2px 0; color: var(--muted); font-size: 13px; }
-
+  @media (hover: none) {
+    .drop { opacity: 1; }
+  }
   @media (max-width: 1040px) {
-    .columns, .head { grid-template-columns: minmax(0, 1fr); }
+    .head, .board { grid-template-columns: minmax(0, 1fr); }
+    .head-main { grid-column: auto; }
     .page { padding: 0 40px 96px; }
   }
   @media (max-width: 640px) {
@@ -178,13 +156,13 @@
     .title { font-size: 32px; }
     .banner { height: clamp(96px, 24vw, 120px); }
     .banner ~ .page .page-icon { width: 80px; height: 80px; margin-top: -40px; font-size: 68px; line-height: 80px; }
-    .entry { grid-template-columns: minmax(0, 1fr); }
   }
 </style>
 </head>
 <body>
   <div class="toast" id="toast" hidden>
     <span id="toast-text" role="status" aria-live="polite"></span>
+    <button type="button" id="retry" hidden>Retry</button>
     <button type="button" id="toast-close" aria-label="Close" title="Close">×</button>
   </div>
 
@@ -193,69 +171,63 @@
   </section>
 
   <main class="page">
-    <div class="page-icon" role="img" aria-label="Newspaper">📰</div>
+    <div class="page-icon" role="img" aria-label="Notepad">🗒️</div>
     <div class="head">
       <div class="head-main">
         <h1 class="title">LinkedIn Ghostwriter</h1>
-        <div class="callout lav focus" id="focus" hidden></div>
       </div>
       <aside class="note" id="start" aria-label="What to say in Chat"></aside>
     </div>
 
-    <div class="columns">
-      <div class="col">
-        <section class="section" aria-labelledby="h-inbox">
-          <div class="callout green"><span class="emoji" aria-hidden="true">📥</span><h2 id="h-inbox">Inbox</h2></div>
-          <div class="inbox-top">
-            <div class="cal" id="cal"></div>
-            <div class="tally" id="tally"></div>
-          </div>
-          <div class="days" id="days"></div>
-        </section>
-      </div>
-
-      <div class="col">
-        <section class="section" aria-labelledby="h-ideas">
-          <div class="callout yellow"><span class="emoji" aria-hidden="true">💡</span><h2 id="h-ideas">Idea bank</h2></div>
-          <div id="ideas"></div>
-        </section>
-
-        <section class="section" aria-labelledby="h-posts">
-          <div class="callout lav"><span class="emoji" aria-hidden="true">✍️</span><h2 id="h-posts">Posts</h2></div>
-          <div id="posts"></div>
-        </section>
-      </div>
+    <div class="board">
+      <section class="lane" aria-labelledby="h-ideas">
+        <div class="callout yellow"><span class="emoji" aria-hidden="true">💡</span><h2 id="h-ideas">Ideas</h2><span class="count" id="n-ideas"></span></div>
+        <div id="ideas"></div>
+      </section>
+      <section class="lane" aria-labelledby="h-drafts">
+        <div class="callout coral"><span class="emoji" aria-hidden="true">✍️</span><h2 id="h-drafts">Drafts</h2><span class="count" id="n-drafts"></span></div>
+        <div id="drafts"></div>
+      </section>
+      <section class="lane" aria-labelledby="h-posted">
+        <div class="callout green"><span class="emoji" aria-hidden="true">✅</span><h2 id="h-posted">Posted</h2><span class="count" id="n-posted"></span></div>
+        <div id="posted"></div>
+      </section>
     </div>
   </main>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h3 id="modal-title"></h3>
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="ghost-btn" data-modal="cancel">Cancel</button>
+        <button type="button" class="danger-btn" data-modal="ok">OK</button>
+      </div>
+    </div>
+  </div>
 
 <script>
 (() => {
   "use strict";
 
-  // The dashboard only shows data. Each inbox day is its own file in inbox/, and the posts live in output/.
-  // The data holds a one-line summary per day, the ideas, and the posts' titles and numbers, and every day
-  // and title links to its file: StashBase opens a relative link in a new tab and scrolls to the heading.
+  // The dashboard is a list of what's next: ideas waiting to be written, drafts waiting to go out, and what's posted.
+  // It all comes from one data file. Each post is its own file in posts/, and its title links there:
+  // StashBase opens a relative link in a new tab. The page can mark a draft posted and drop an idea; the Agent does the rest.
   const DATA_PATH = "./assets/posts.json";
-  const INBOX_DIR = "inbox/";
-  const LINKEDIN_FILE = "output/linkedin_posts.md";
-  const X_FILE = "output/x_posts.md";
-  const X_ARTICLES = "output/x_articles/";
-  const X_FORMATS = { post: "X Post", thread: "X Thread", article: "X Article" };
+  const POSTS_DIR = "posts/";
+  const POSTED_SHOWN = 6;
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  // The grid shows at least two months and at most half a year; the lists start short.
-  const MIN_WEEKS = 8;
-  const MAX_WEEKS = 26;
-  const DAYS_SHOWN = 10;
-  const POSTS_SHOWN = 5;
-  const OUT_ICON = '<svg class="i" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2.5h4v4M13.5 2.5 7.5 8.5M12 9.5v4h-9.5V4h4"/></svg>';
+  const PATHS = {
+    x: '<path d="m4.5 4.5 7 7M11.5 4.5l-7 7"/>',
+    check: '<path d="m3 8.5 3.2 3L13 4.5"/>',
+  };
+  const icon = (name) => `<svg class="i" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[name]}</svg>`;
 
   const $ = (selector) => document.querySelector(selector);
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const isObj = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
   const arr = (value) => (Array.isArray(value) ? value : []);
   const str = (value) => (typeof value === "string" ? value : "");
-  const count = (value) => (Number.isFinite(value) && value >= 0 ? value : null);
   const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
 
   // Dates are local calendar days, never times.
@@ -264,282 +236,239 @@
     return new Date(y, m - 1, d);
   };
   const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  const addDays = (d, n) => new Date(d.getFullYear(), d.getMonth(), d.getDate() + n);
-  const monday = (d) => addDays(d, -((d.getDay() + 6) % 7));
   const short = (s) => {
     const d = parse(s);
     return `${MONTHS[d.getMonth()]} ${d.getDate()}${d.getFullYear() === new Date().getFullYear() ? "" : `, ${d.getFullYear()}`}`;
   };
-  const dayName = (s) => `${WEEKDAYS[parse(s).getDay()]}, ${short(s)}`;
-  const plural = (n, word) => `${n.toLocaleString("en-US")} ${word}${n === 1 ? "" : "s"}`;
-  const compact = (n) => (n >= 1000 ? `${(n / 1000).toFixed(n >= 100000 ? 0 : 1)}k` : String(n));
+  // Newest first; anything without a date goes last.
+  const newestFirst = (key) => (a, b) => (b[key] || "").localeCompare(a[key] || "");
 
-  // The same heading ids StashBase gives a page's headings, so a link can land on one post.
-  const headingId = (text) => text.trim().toLowerCase().normalize("NFKD")
-    .replace(/[̀-ͯ]/gu, "")
-    .replace(/[^\p{L}\p{N}_ -]/gu, "")
-    .trim()
-    .replace(/\s+/gu, "-") || "section";
-  const anchor = (p) => encodeURIComponent(headingId(`${p.date} · ${p.topic}`));
-  const dayHref = (date) => `${INBOX_DIR}${date}.md`;
-  const linkedinHref = (p) => `${LINKEDIN_FILE}#${anchor(p)}`;
-  const xHref = (p) => (p.x.format === "article" ? `${X_ARTICLES}${encodeURIComponent(p.x.file)}` : `${X_FILE}#${anchor(p)}`);
-
+  // Each idea and post keeps `at`, its place in the file, so the page changes exactly that entry.
   function normalize(raw) {
     const src = isObj(raw) ? raw : {};
-    // One entry per day, newest first; if a day is listed twice, the later one wins.
-    const days = new Map();
-    for (const d of arr(src.inbox)) {
-      if (isObj(d) && isDate(d.date)) days.set(d.date, { ...d, summary: str(d.summary).trim() });
-    }
-    const ideaKey = (i) => i.date || [...i.from].sort().pop() || "";
     return {
-      ...src,
       example: src.example === true,
-      focus: str(src.focus),
-      angles: arr(src.angles).filter(isObj).map((a) => ({ ...a, id: str(a.id), name: str(a.name) || str(a.id) })).filter((a) => a.id),
-      inbox: [...days.values()].sort((a, b) => b.date.localeCompare(a.date)),
-      ideas: arr(src.ideas).filter(isObj).map((i) => ({
-        ...i,
-        title: str(i.title),
+      ideas: arr(src.ideas).map((i, at) => (isObj(i) ? {
+        at,
         date: isDate(i.date) ? i.date : "",
-        from: arr(i.from).filter(isDate),
-        angle: str(i.angle),
-      })).filter((i) => i.title.trim()).sort((a, b) => ideaKey(b).localeCompare(ideaKey(a))),
-      posts: arr(src.posts).filter(isObj).map((p) => ({
-        ...p,
+        idea: str(i.idea).trim(),
+        plan: str(i.plan).trim(),
+        series: i.series === true,
+      } : null)).filter((i) => i && i.idea).sort(newestFirst("date")),
+      posts: arr(src.posts).map((p, at) => (isObj(p) ? {
+        at,
         date: isDate(p.date) ? p.date : "",
-        topic: str(p.topic),
-        from: arr(p.from).filter(isDate),
-        angle: str(p.angle),
-        status: p.status === "approved" ? "approved" : "draft",
-        posted: isDate(p.posted) ? p.posted : null,
-        url: /^https:\/\//.test(str(p.url)) ? p.url : "",
-        impressions: count(p.impressions),
-        x: isObj(p.x) && X_FORMATS[p.x.format] && (p.x.format !== "article" || str(p.x.file)) ? p.x : null,
-      })).filter((p) => p.date && p.topic).sort((a, b) => b.date.localeCompare(a.date)),
+        title: str(p.title).trim(),
+        file: str(p.file).trim(),
+        series: str(p.series).trim(),
+        posted: isDate(p.posted) ? p.posted : p.posted === true ? true : null,
+      } : null)).filter((p) => p && p.title),
     };
   }
 
-  let data = normalize({});
-  let allDays = false;
-  let allPosts = false;
+  const api = window.stashbase?.data;
+  let raw = {};
+  let data = normalize(raw);
+  let canSave = false;
+  let saveError = "";
+  let saving = false;
+  let revision = 0;
+  let savedRevision = 0;
+  let saveTimer = 0;
+  let queue = Promise.resolve();
+  let toastKind = "";
+  let allPosted = false;
 
-  const angleName = (id) => data.angles.find((a) => a.id === id)?.name || "";
-  const angleTag = (id) => (angleName(id) ? `<span class="tag k-gray">${esc(angleName(id))}</span>` : "");
-  // Which posts and ideas each day went into, from their `from` lists.
-  const postsFrom = (date) => data.posts.filter((p) => p.from.includes(date));
-  const ideasFrom = (date) => data.ideas.filter((i) => i.from.includes(date));
-  // How far a day went: into a post, into an idea, or just written down.
-  const stage = (date) => (postsFrom(date).length ? "post" : ideasFrom(date).length ? "idea" : "logged");
+  /* ---------- Saving: each change goes to the shared draft at once, and to the file after a short pause ---------- */
 
-  /* ---------- Header ---------- */
+  const snapshot = () => JSON.parse(JSON.stringify(raw));
 
-  function renderHead() {
-    $("#focus").innerHTML = data.focus
-      ? `<span class="emoji" aria-hidden="true">🎯</span><p><strong>Posting about:</strong> ${esc(data.focus)}</p>`
-      : "";
-    $("#focus").hidden = !data.focus;
+  function enqueue(operation) {
+    const task = queue.then(operation);
+    queue = task.catch(() => {});
+    return task;
+  }
+
+  function commit() {
+    revision += 1;
+    data = normalize(raw);
+    if (canSave) {
+      const snap = snapshot();
+      enqueue(() => api.update(snap)).catch((error) => {
+        saveError = `Couldn't save: ${error?.message || error}`;
+        renderSaveState();
+      });
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(save, 800);
+    }
+    renderSaveState();
+    render();
+  }
+
+  async function save() {
+    clearTimeout(saveTimer);
+    if (!canSave || saving || savedRevision === revision) return;
+    const rev = revision;
+    const snap = snapshot();
+    saving = true;
+    try {
+      await enqueue(async () => {
+        await api.update(snap);
+        await api.save();
+      });
+      savedRevision = rev;
+      saveError = "";
+    } catch (error) {
+      saveError = `Couldn't save: ${error?.message || error}`;
+    } finally {
+      saving = false;
+      if (!saveError && savedRevision !== revision) saveTimer = setTimeout(save, 800);
+      renderSaveState();
+    }
+  }
+
+  // Saving is quiet: the notice shows only when something is wrong, or once in a plain browser, where nothing saves.
+  function renderSaveState() {
+    if (canSave && saveError) notify(`${saveError}. Your changes are still on the page.`, "save");
+    else if (toastKind === "save") hideToast();
+    else if (!canSave && revision === 1) notify("Preview mode · changes won't be saved", "preview");
+  }
+
+  /* ---------- Views ---------- */
+
+  function renderNote() {
     // "Set me up" only while the template's example is still here.
-    const steps = [
-      data.example && ["Set me up.", "Replace the example."],
-      ["Today I…", "Add your day to the inbox."],
-      ["What should I post?", "Get post ideas."],
-    ].filter(Boolean);
-    $("#start").innerHTML = `<h3>Say in Chat</h3>${steps.map(([say, what]) => `<p><strong>“${esc(say)}”</strong> <span>${esc(what)}</span></p>`).join("")}`;
+    const steps = [data.example && "Set me up.", "I have an idea: …", "Write about …"].filter(Boolean);
+    $("#start").innerHTML = `<h3>Say in Chat</h3>${steps.map((say) => `<p><strong>“${esc(say)}”</strong></p>`).join("")}`;
   }
 
-  /* ---------- Inbox: the grid ---------- */
+  const postLink = (p) => (p.file
+    ? `<a class="card-title" href="${POSTS_DIR}${encodeURIComponent(p.file)}">${esc(p.title)}</a>`
+    : `<p class="card-title">${esc(p.title)}</p>`);
+  const seriesTag = (name) => (name ? `<span class="tag k-teal" title="${esc(name)}"><span>${esc(name)}</span></span>` : "");
 
-  function renderCalendar() {
-    const now = new Date();
-    const today = keyOf(now);
-    const logged = new Map(data.inbox.map((d) => [d.date, d]));
-    const thisWeek = monday(now);
-    const oldest = data.inbox.length ? monday(parse(data.inbox[data.inbox.length - 1].date)) : thisWeek;
-    const back = Math.min(MAX_WEEKS - 1, Math.max(MIN_WEEKS - 1, Math.round((thisWeek - oldest) / 6048e5)));
-    const start = addDays(thisWeek, -7 * back);
-    const firstOfMonth = (w) => {
-      for (let i = 0; i < 7; i++) {
-        const d = addDays(start, 7 * w + i);
-        if (d.getDate() === 1) return MONTHS[d.getMonth()];
-      }
-      return "";
-    };
-
-    let months = "";
-    let cells = "";
-    for (let w = 0; w <= back; w++) {
-      // A month's name sits over the week its 1st falls in. The first column names its own month,
-      // unless another name follows too closely.
-      let name = firstOfMonth(w);
-      if (w === 0 && !name && !firstOfMonth(1) && !firstOfMonth(2)) name = MONTHS[addDays(start, 6).getMonth()];
-      months += `<span>${name}</span>`;
-      for (let r = 0; r < 7; r++) {
-        const key = keyOf(addDays(start, 7 * w + r));
-        if (key > today) {
-          cells += '<span class="day later"></span>';
-          continue;
-        }
-        const ring = key === today ? " is-today" : "";
-        const day = logged.get(key);
-        if (!day) {
-          cells += `<span class="day${ring}"></span>`;
-          continue;
-        }
-        const label = `${dayName(key)}: ${day.summary || "written down"}`;
-        cells += `<a class="day s-${stage(key)}${ring}" href="${dayHref(key)}" title="${esc(label)}" aria-label="${esc(label)}"></a>`;
-      }
-    }
-    $("#cal").innerHTML = `<div class="cal-grid">
-      <span></span>
-      <div class="cal-months" aria-hidden="true">${months}</div>
-      <div class="cal-dow" aria-hidden="true"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span></span></div>
-      <div class="cal-days" role="group" aria-label="Days you wrote in your inbox">${cells}</div>
-    </div>`;
-    // On a narrow screen the grid scrolls; start at this week.
-    $("#cal").scrollLeft = $("#cal").scrollWidth;
-  }
-
-  /* ---------- Inbox: the tally ---------- */
-
-  function renderTally() {
-    const days = data.inbox.length;
-    if (!days) {
-      $("#tally").innerHTML = '<p class="nudge">Your inbox is empty. Tell the Agent what you did today, and your first square fills in.</p>';
-      return;
-    }
-    const ideas = data.ideas.length;
-    // Posts that came out of the inbox, not past posts brought in at setup.
-    const made = data.posts.filter((p) => p.from.length).length;
-    let sum = `<b>${plural(days, "day")}</b> written down.`;
-    if (made) sum += ` They've turned into <b>${plural(made, "post")}</b>${ideas ? `, with <b>${plural(ideas, "idea")}</b> waiting` : ""}.`;
-    else if (ideas) sum += ` They've sparked <b>${plural(ideas, "idea")}</b> so far.`;
-    const done = data.inbox[0].date === keyOf(new Date());
-    $("#tally").innerHTML = `
-      <p class="nudge${done ? " done" : ""}">${done ? "✓ Today's in your inbox." : "Nothing logged today yet. Say “Today I…” in Chat."}</p>
-      <p>${sum}</p>
-      <div class="legend">
-        <span><i class="sw s-logged"></i>Written down</span>
-        <span><i class="sw s-idea"></i>Sparked an idea</span>
-        <span><i class="sw s-post"></i>Went into a post</span>
-      </div>`;
-  }
-
-  /* ---------- Inbox: day by day ---------- */
-
-  // One line per day; the summary opens the day's file, and what it turned into sits below.
-  function dayHtml(day) {
-    const out = [
-      ...postsFrom(day.date).map((p) => `<a class="pill k-lav" href="${linkedinHref(p)}" title="${esc(p.topic)}">✍️ ${esc(p.topic)}</a>`),
-      ...ideasFrom(day.date).map((i) => `<button type="button" class="pill k-yellow" data-idea="${data.ideas.indexOf(i)}" title="Show in the idea bank">💡 ${esc(i.title)}</button>`),
-    ];
-    return `<li class="entry">
-      <span class="when"><i class="sw s-${stage(day.date)}" aria-hidden="true"></i>${esc(dayName(day.date))}</span>
-      <div class="what">
-        <a href="${dayHref(day.date)}">${esc(day.summary || "Open this day")}</a>
-        ${out.length ? `<div class="out">${out.join("")}</div>` : ""}
+  function ideaCard(i) {
+    const written = i.series ? data.posts.filter((p) => p.series === i.idea).length : 0;
+    return `<div class="card">
+      <div class="card-head">
+        <p class="card-title">${esc(i.idea)}</p>
+        <button type="button" class="drop" data-drop="${i.at}" aria-label="Drop this idea" title="Drop this idea">${icon("x")}</button>
       </div>
-    </li>`;
+      ${i.plan ? `<p class="plan">${esc(i.plan)}</p>` : ""}
+      <div class="meta">${i.series ? `<span class="tag k-teal">Series · ${written} written</span>` : ""}${i.date ? `<span class="when">Added ${esc(short(i.date))}</span>` : ""}</div>
+    </div>`;
   }
 
-  function renderDays() {
-    const list = allDays ? data.inbox : data.inbox.slice(0, DAYS_SHOWN);
-    const toggle = data.inbox.length > DAYS_SHOWN
-      ? `<button type="button" class="more" data-more="days">${allDays ? "Show fewer days" : `Show all ${data.inbox.length} days`}</button>`
+  function postCard(p) {
+    const on = !!p.posted;
+    const label = on ? "Mark as not posted" : "Mark as posted";
+    const status = on ? `<span class="tag status k-green">${p.posted === true ? "Posted" : `Posted ${esc(short(p.posted))}`}</span>` : "";
+    const written = !on && p.date ? `<span class="when">Written ${esc(short(p.date))}</span>` : "";
+    return `<div class="card">
+      <div class="card-head">
+        <button type="button" class="check${on ? " on" : ""}" data-check="${p.at}" aria-pressed="${on}" aria-label="${label}" title="${label}">${icon("check")}</button>
+        ${postLink(p)}
+      </div>
+      <div class="meta">${status}${seriesTag(p.series)}${written}</div>
+    </div>`;
+  }
+
+  function lane(id, items, card, empty, more = "") {
+    $(`#${id}`).innerHTML = items.length ? `<div class="cards">${items.map(card).join("")}</div>${more}` : `<p class="empty">${empty}</p>`;
+  }
+
+  function render() {
+    renderNote();
+    const drafts = data.posts.filter((p) => !p.posted).sort(newestFirst("date"));
+    // Posted: newest out first; one posted on an unknown day goes by the day it was written.
+    const outDay = (p) => (isDate(p.posted) ? p.posted : p.date);
+    const posted = data.posts.filter((p) => p.posted).sort((a, b) => outDay(b).localeCompare(outDay(a)));
+    const shown = allPosted ? posted : posted.slice(0, POSTED_SHOWN);
+    const more = posted.length > POSTED_SHOWN
+      ? `<button type="button" class="more" data-more>${allPosted ? "Show fewer" : `Show all ${posted.length}`}</button>`
       : "";
-    $("#days").innerHTML = list.length ? `<ol class="timeline">${list.map(dayHtml).join("")}</ol>${toggle}` : "";
+    $("#n-ideas").textContent = data.ideas.length || "";
+    $("#n-drafts").textContent = drafts.length || "";
+    $("#n-posted").textContent = posted.length || "";
+    lane("ideas", data.ideas, ideaCard, "No ideas yet. Say “I have an idea: …” in Chat.");
+    lane("drafts", drafts, postCard, "Nothing waiting. Say “Write about …” with one of your ideas.");
+    lane("posted", shown, postCard, "Nothing posted yet.", more);
   }
 
-  /* ---------- Idea bank ---------- */
+  /* ---------- Changes from the page ---------- */
 
-  // The Agent adds every idea, so each one has its angle, and its inbox days when it came from them.
-  function ideaSource(i) {
-    if (i.from.length) return `<span class="from">From ${i.from.map((f) => `<a class="link" href="${dayHref(f)}">${esc(short(f))}</a>`).join(", ")}</span>`;
-    return i.date ? `<span class="from">Added ${esc(short(i.date))}</span>` : "";
+  function togglePosted(at) {
+    const p = arr(raw.posts)[at];
+    if (!isObj(p)) return;
+    p.posted = p.posted ? null : keyOf(new Date());
+    commit();
   }
 
-  function renderIdeas() {
-    const hint = '<p class="hint">Have one of your own? Say “Save an idea: …” in Chat.</p>';
-    if (!data.ideas.length) {
-      $("#ideas").innerHTML = `<p class="empty">No ideas yet. Tell the Agent about your day, and it adds one.</p>${hint}`;
-      return;
-    }
-    $("#ideas").innerHTML = `<div class="list">${data.ideas.map((i, n) => `<div class="row" id="idea-${n}">
-        <p class="row-title">${esc(i.title)}</p>
-        <div class="meta">${angleTag(i.angle)}${ideaSource(i)}</div>
-      </div>`).join("")}</div>${hint}`;
+  async function dropIdea(at) {
+    const i = arr(raw.ideas)[at];
+    if (!isObj(i)) return;
+    const ok = await ask("Drop this idea?", `<p>“${esc(str(i.idea))}” will be gone from your ideas.</p>`, "Drop");
+    if (!ok || arr(raw.ideas)[at] !== i) return;
+    raw.ideas.splice(at, 1);
+    commit();
   }
 
-  /* ---------- Posts ---------- */
+  /* ---------- Confirm dialog ---------- */
 
-  function statusTag(p) {
-    const s = p.posted ? { label: `Posted ${short(p.posted)}`, k: "green" } : p.status === "approved" ? { label: "Approved", k: "yellow" } : { label: "Draft", k: "gray" };
-    return `<span class="tag status k-${s.k}">${esc(s.label)}</span>`;
+  const modalEl = $("#modal");
+  let modalResolve = null;
+  function ask(title, bodyHtml, okLabel = "OK") {
+    $("#modal-title").textContent = title;
+    $("#modal-body").innerHTML = bodyHtml;
+    const ok = modalEl.querySelector('[data-modal="ok"]');
+    ok.textContent = okLabel;
+    modalEl.hidden = false;
+    ok.focus();
+    return new Promise((resolve) => { modalResolve = resolve; });
   }
-
-  function renderPosts() {
-    if (!data.posts.length) {
-      $("#posts").innerHTML = '<p class="empty">No posts yet. When an idea feels ready, ask the Agent to write it.</p>';
-      return;
-    }
-    const list = allPosts ? data.posts : data.posts.slice(0, POSTS_SHOWN);
-    const toggle = data.posts.length > POSTS_SHOWN
-      ? `<button type="button" class="more" data-more="posts">${allPosts ? "Show fewer posts" : `Show all ${data.posts.length} posts`}</button>`
-      : "";
-    $("#posts").innerHTML = `<div class="list">${list.map((p) => `<div class="row">
-        <a class="row-title link" href="${linkedinHref(p)}">${esc(p.topic)}</a>
-        <div class="meta">
-          ${statusTag(p)}${angleTag(p.angle)}
-          ${p.x ? `<a class="chip" href="${xHref(p)}">${esc(X_FORMATS[p.x.format])}</a>` : ""}
-          ${p.url ? `<a class="chip muted" href="${esc(p.url)}" target="_blank" rel="noopener" title="Open on LinkedIn" aria-label="Open on LinkedIn">${OUT_ICON}</a>` : ""}
-          ${p.posted && p.impressions !== null ? `<span class="seen">${compact(p.impressions)} impressions</span>` : ""}
-        </div>
-      </div>`).join("")}</div>${toggle}`;
+  function closeModal(result) {
+    if (!modalResolve) return;
+    modalEl.hidden = true;
+    const resolve = modalResolve;
+    modalResolve = null;
+    resolve(result);
   }
-
-  function renderAll() {
-    renderHead();
-    renderCalendar();
-    renderTally();
-    renderDays();
-    renderIdeas();
-    renderPosts();
-  }
-
-  /* ---------- Events ---------- */
+  modalEl.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-modal]");
+    if (button) closeModal(button.dataset.modal === "ok");
+    else if (event.target === modalEl) closeModal(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modalEl.hidden) closeModal(false);
+  });
 
   document.addEventListener("click", (event) => {
-    const pick = event.target.closest("[data-idea]");
-    if (pick) {
-      const row = document.getElementById(`idea-${pick.dataset.idea}`);
-      if (!row) return;
-      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      row.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "center" });
-      row.classList.remove("found");
-      void row.offsetWidth; // restart the glow if it's clicked again
-      row.classList.add("found");
-      setTimeout(() => row.classList.remove("found"), 1600);
-      return;
-    }
-    const more = event.target.closest("[data-more]");
-    if (!more) return;
-    if (more.dataset.more === "days") {
-      allDays = !allDays;
-      renderDays();
-    } else {
-      allPosts = !allPosts;
-      renderPosts();
+    const t = event.target;
+    const check = t.closest("[data-check]");
+    if (check) return togglePosted(Number(check.dataset.check));
+    const drop = t.closest("[data-drop]");
+    if (drop) return dropIdea(Number(drop.dataset.drop));
+    if (t.closest("[data-more]")) {
+      allPosted = !allPosted;
+      render();
     }
   });
 
   /* ---------- Start ---------- */
 
   // There's no console in StashBase, so problems show at the bottom right, ready to pass on.
-  function showProblem(message) {
+  function notify(message, kind) {
+    toastKind = kind;
     $("#toast-text").textContent = message;
+    $("#toast").classList.toggle("calm", kind === "preview");
+    $("#retry").hidden = kind !== "save";
     $("#toast").hidden = false;
   }
+  function hideToast() {
+    toastKind = "";
+    $("#toast").hidden = true;
+  }
+  const showProblem = (message) => notify(message, "error");
   const lineOf = (stack) => /:(\d+):\d+\)?\s*$/m.exec(String(stack || "").split("\n")[1] || "")?.[1];
   addEventListener("error", (event) => {
     if (/ResizeObserver loop/i.test(event.message || "")) return;
@@ -551,19 +480,31 @@
     const line = lineOf(reason?.stack);
     showProblem(`Page error: ${reason?.message || reason}${line ? ` (line ${line})` : ""}`);
   });
-  $("#toast-close").addEventListener("click", () => {
-    $("#toast").hidden = true;
+  $("#toast-close").addEventListener("click", hideToast);
+  $("#retry").addEventListener("click", () => {
+    saveError = "";
+    hideToast();
+    save();
+  });
+  addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") save();
+  });
+  addEventListener("beforeunload", (event) => {
+    if (canSave && (saving || savedRevision !== revision)) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
   });
 
   async function start() {
-    const api = window.stashbase?.data;
     try {
-      // The page only reads. The Agent keeps the data current; StashBase reloads the page when it changes.
-      if (api && typeof api.load === "function") data = normalize(await api.load(DATA_PATH));
-      else {
+      if (api && typeof api.load === "function") {
+        raw = await api.load(DATA_PATH);
+        canSave = typeof api.update === "function" && typeof api.save === "function";
+      } else {
         try {
           const response = await fetch(DATA_PATH);
-          if (response.ok) data = normalize(await response.json());
+          if (response.ok) raw = await response.json();
         } catch {
           // Opened straight from disk in a browser, the page can't read its data, so it shows empty.
         }
@@ -571,7 +512,9 @@
     } catch (error) {
       showProblem(`Couldn't load the dashboard: ${error?.message || error}`);
     }
-    renderAll();
+    raw = isObj(raw) ? raw : {};
+    data = normalize(raw);
+    render();
   }
 
   start();
