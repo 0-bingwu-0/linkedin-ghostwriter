@@ -21,7 +21,7 @@
     /* The Workout Tracker's colors: coral, yellow, green, and its Notion blue, plus a ghostly lavender behind the banner.
        Tags and columns use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
     --banner: #c7bdea;
-    --inbox-bg: rgba(199, 189, 234, 0.32); --inbox-hover: rgba(199, 189, 234, 0.55);
+    --inbox-bg: rgba(229, 130, 131, 0.2); --inbox-hover: rgba(229, 130, 131, 0.32);
     /* Board columns: a faint wash of each status's color, like a Notion board */
     --lane-yellow: rgba(242, 228, 157, 0.22); --lane-blue: rgba(211, 229, 239, 0.42); --lane-green: rgba(206, 231, 170, 0.26);
     --t-gray: rgba(227, 226, 224, 0.6); --f-gray: #32302c; --d-gray: #91918e;
@@ -45,7 +45,7 @@
       --pop-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 6px, rgba(0, 0, 0, 0.45) 0 9px 24px;
       --card: #252525;
       --card-shadow: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 4px;
-      --inbox-bg: rgba(199, 189, 234, 0.16); --inbox-hover: rgba(199, 189, 234, 0.26);
+      --inbox-bg: rgba(229, 130, 131, 0.18); --inbox-hover: rgba(229, 130, 131, 0.28);
       --lane-yellow: rgba(242, 228, 157, 0.06); --lane-blue: rgba(94, 167, 216, 0.08); --lane-green: rgba(206, 231, 170, 0.06);
       --t-gray: #3f4245;
       --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-blue: #27405a;
@@ -88,7 +88,7 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
-  /* The inbox is one click away, in the banner's lavender. No count or date: it's a log, not something waiting to be read. */
+  /* The inbox is one click away, in a soft coral that matches the mailbox's flag. No count or date: it's a log, not something waiting to be read. */
   .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; background: var(--inbox-bg); color: var(--text); font-size: 14px; text-decoration: none; white-space: nowrap; }
   .inbox-btn:hover { background: var(--inbox-hover); }
 
