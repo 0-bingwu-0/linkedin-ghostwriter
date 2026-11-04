@@ -87,10 +87,10 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
-  /* The inbox is a button that opens inbox/index.md: solid coral with a white tray icon. No count or date: it's a log, not something waiting to be read. */
+  /* The inbox is a button that opens inbox/index.md: solid coral with a white inbox icon. No count or date: it's a log, not something waiting to be read. */
   .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; background: var(--inbox-bg); box-shadow: 0 1px 2px rgba(15, 15, 15, 0.12); color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
   .inbox-btn:hover { background: var(--inbox-hover); }
-  .inbox-btn .i { width: 15px; height: 15px; stroke-width: 1.9; }
+  .inbox-btn .i { display: block; width: 16px; height: 16px; }
 
   /* An idea, or a day in the inbox, opens from the right over half the screen */
   .side {
@@ -231,7 +231,8 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
-      <a class="inbox-btn" href="inbox/index.md"><span data-icon="inbox"></span>Inbox</a>
+      <!-- The inbox icon is Lucide's "inbox" (lucide.dev, ISC License) -->
+      <a class="inbox-btn" href="inbox/index.md"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>Inbox</a>
     </div>
 
     <div class="board" id="board">
@@ -284,7 +285,6 @@
     close: '<path d="M3.5 3.5 8 8l-4.5 4.5M8.5 3.5 13 8l-4.5 4.5"/>',
     trash: '<path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/>',
     check: '<path d="m3 8.5 3.2 3L13 4.5"/>',
-    inbox: '<rect x="2.5" y="3" width="11" height="10" rx="2"/><path d="M2.5 9h3l1 1.6h3l1-1.6h3"/>',
     board: '<rect x="2" y="3" width="3.4" height="10" rx="1"/><rect x="6.3" y="3" width="3.4" height="7" rx="1"/><rect x="10.6" y="3" width="3.4" height="8.5" rx="1"/>',
     table: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M2 9.8h12M6.5 6.5V13"/>',
   };
