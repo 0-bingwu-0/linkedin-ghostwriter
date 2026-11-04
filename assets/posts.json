@@ -7,9 +7,9 @@
     {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from my biggest PR, still open after three weeks, and a two-line fix that was merged the same day."}
   ],
   "posts": [
-    {"date": "2026-11-04", "title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "series": "Done means something different in someone else's project", "posted": null},
-    {"date": "2026-11-04", "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04"},
-    {"date": "2026-10-14", "title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": "2026-10-14"},
-    {"date": "2026-09-22", "title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": "2026-09-22"}
+    {"title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "series": "Done means something different in someone else's project", "posted": null},
+    {"title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04"},
+    {"title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": "2026-10-14"},
+    {"title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": "2026-09-22"}
   ]
 }

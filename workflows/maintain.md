@@ -32,7 +32,7 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
     { "date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": "" }
   ],
   "posts": [
-    { "date": "2026-11-04", "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04" }
+    { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04" }
   ]
 }
 ```
@@ -43,9 +43,8 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
   * `plan` is how I'd tell it, or for a series, the posts in it and what's still open. Leave it empty until I've said.
   * `series` is `true` for a series. A series stays here until its last post is written.
 * `posts` are my posts, past and new, newest first.
-  * `date` is the date in its file name, or `null` for a past post with no date in its name.
   * `title` is the `#` heading in its file. `file` is its file name in `posts/`.
-  * `series` is the `idea` of the series it's part of. Leave it out otherwise.
+  * `series` is the `idea` of the series it's part of. Leave it out otherwise. The dashboard doesn't show it on the post; it counts the posts written for each series, and you use it to find the earlier posts in a series.
   * `posted` is the day it went out, `true` if it went out but I don't know the day, or `null` while it's a draft. Past posts I give you are posted.
 
 ## Size

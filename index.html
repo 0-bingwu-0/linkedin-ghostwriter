@@ -18,15 +18,16 @@
     --pop-shadow: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 3px 6px, rgba(15, 15, 15, 0.2) 0 9px 24px;
     --card: #ffffff;
     --card-shadow: rgba(15, 15, 15, 0.07) 0 0 0 1px, rgba(15, 15, 15, 0.06) 0 2px 4px;
-    /* The Workout Tracker's colors: coral, yellow, and green, plus the teal of the banner's background.
+    /* The Workout Tracker's colors: coral, yellow, green, and its Notion blue, plus the teal of the banner's background.
        Tags and columns use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
     --banner: #b4e0db;
     /* Board columns: a faint wash of each status's color, like a Notion board */
-    --lane-gray: rgba(55, 53, 47, 0.035); --lane-yellow: rgba(242, 228, 157, 0.22); --lane-green: rgba(206, 231, 170, 0.26);
+    --lane-yellow: rgba(242, 228, 157, 0.22); --lane-blue: rgba(211, 229, 239, 0.42); --lane-green: rgba(206, 231, 170, 0.26);
     --t-gray: rgba(227, 226, 224, 0.6); --f-gray: #32302c; --d-gray: #91918e;
     --t-coral: rgba(229, 130, 131, 0.3); --f-coral: #6b2a2b; --d-coral: #d9686a;
     --t-yellow: rgba(242, 228, 157, 0.65); --f-yellow: #5c4d12; --d-yellow: #cfb23a;
     --t-green: rgba(206, 231, 170, 0.7); --f-green: #35501a; --d-green: #86b856;
+    --t-blue: #d3e5ef; --f-blue: #183347; --d-blue: #5b97bd;
     --t-teal: rgba(179, 227, 223, 0.65); --f-teal: #1f4f4b; --d-teal: #5fb3ab;
     --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Apple Color Emoji", Arial, sans-serif;
   }
@@ -44,13 +45,13 @@
       --pop-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 6px, rgba(0, 0, 0, 0.45) 0 9px 24px;
       --card: #252525;
       --card-shadow: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 4px;
-      --lane-gray: rgba(255, 255, 255, 0.03); --lane-yellow: rgba(242, 228, 157, 0.06); --lane-green: rgba(206, 231, 170, 0.06);
+      --lane-yellow: rgba(242, 228, 157, 0.06); --lane-blue: rgba(94, 167, 216, 0.08); --lane-green: rgba(206, 231, 170, 0.06);
       --t-gray: #3f4245;
-      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-teal: rgba(179, 227, 223, 0.2);
+      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-blue: #27405a; --t-teal: rgba(179, 227, 223, 0.2);
       --f-gray: rgba(255, 255, 255, 0.86);
-      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-teal: var(--f-gray);
+      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-blue: var(--f-gray); --f-teal: var(--f-gray);
       --d-gray: #8f8f8f;
-      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-teal: #b3e3df;
+      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-blue: #5ea7d8; --d-teal: #b3e3df;
     }
   }
   * { box-sizing: border-box; }
@@ -90,8 +91,8 @@
   /* Board: one tinted column per status, each with a status pill on top */
   .board { display: grid; grid-template-columns: repeat(3, minmax(0, 360px)); gap: 12px; align-items: start; overflow-x: auto; }
   .lane { min-width: 0; padding: 6px 6px 8px; border-radius: 8px; background: var(--lane); }
-  .lane.gray { --lane: var(--lane-gray); }
   .lane.yellow { --lane: var(--lane-yellow); }
+  .lane.blue { --lane: var(--lane-blue); }
   .lane.green { --lane: var(--lane-green); }
   .lane-head { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px; }
   .count { color: var(--faint); font-size: 13px; }
@@ -125,11 +126,12 @@
   .k-gray { --tb: var(--t-gray); --tf: var(--f-gray); --td: var(--d-gray); }
   .k-yellow { --tb: var(--t-yellow); --tf: var(--f-yellow); --td: var(--d-yellow); }
   .k-green { --tb: var(--t-green); --tf: var(--f-green); --td: var(--d-green); }
+  .k-blue { --tb: var(--t-blue); --tf: var(--f-blue); --td: var(--d-blue); }
   .k-teal { --tb: var(--t-teal); --tf: var(--f-teal); --td: var(--d-teal); }
 
   /* All posts: a plain database table */
   .tbl-scroll { overflow-x: auto; }
-  table.db { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+  table.db { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px; }
   .db th { height: 34px; padding: 0 8px; border-bottom: 1px solid var(--line); color: var(--muted); font-weight: 400; text-align: left; white-space: nowrap; }
   .db td { height: 38px; padding: 4px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
   .db td.name { font-weight: 500; }
@@ -189,12 +191,12 @@
     </div>
 
     <div class="board" id="board">
-      <section class="lane gray" aria-label="Ideas">
-        <div class="lane-head"><span class="tag status k-gray">Ideas</span><span class="count" id="n-ideas"></span></div>
+      <section class="lane yellow" aria-label="Ideas">
+        <div class="lane-head"><span class="tag status k-yellow">Ideas</span><span class="count" id="n-ideas"></span></div>
         <div id="ideas"></div>
       </section>
-      <section class="lane yellow" aria-label="Drafts">
-        <div class="lane-head"><span class="tag status k-yellow">Drafts</span><span class="count" id="n-drafts"></span></div>
+      <section class="lane blue" aria-label="Drafts">
+        <div class="lane-head"><span class="tag status k-blue">Drafts</span><span class="count" id="n-drafts"></span></div>
         <div id="drafts"></div>
       </section>
       <section class="lane green" aria-label="Posted">
@@ -250,7 +252,9 @@
   const longDate = (s) => parse(s).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // Newest first; anything without a date goes last.
   const newestFirst = (key) => (a, b) => (b[key] || "").localeCompare(a[key] || "");
-  const outDay = (p) => (isDate(p.posted) ? p.posted : p.date);
+  // Drafts go newest first by file name, which starts with the day it was written; posted ones by the day they went out.
+  const byFile = (a, b) => b.file.localeCompare(a.file);
+  const byPosted = (a, b) => (isDate(b.posted) ? b.posted : "").localeCompare(isDate(a.posted) ? a.posted : "") || byFile(a, b);
 
   // Each idea and post keeps `at`, its place in the file, so the page changes exactly that entry.
   function normalize(raw) {
@@ -266,7 +270,6 @@
       } : null)).filter((i) => i && i.idea).sort(newestFirst("date")),
       posts: arr(src.posts).map((p, at) => (isObj(p) ? {
         at,
-        date: isDate(p.date) ? p.date : "",
         title: str(p.title).trim(),
         file: str(p.file).trim(),
         series: str(p.series).trim(),
@@ -355,8 +358,7 @@
   const postLink = (p, cls) => (p.file
     ? `<a class="${cls}" href="${POSTS_DIR}${encodeURIComponent(p.file)}">${esc(p.title)}</a>`
     : `<span class="${cls}">${esc(p.title)}</span>`);
-  const seriesTag = (name) => (name ? `<span class="tag k-teal" title="${esc(name)}"><span>${esc(name)}</span></span>` : "");
-  const statusTag = (p) => (p.posted ? '<span class="tag status k-green">Posted</span>' : '<span class="tag status k-yellow">Draft</span>');
+  const statusTag = (p) => (p.posted ? '<span class="tag status k-green">Posted</span>' : '<span class="tag status k-blue">Draft</span>');
 
   function ideaCard(i) {
     const written = i.series ? data.posts.filter((p) => p.series === i.idea).length : 0;
@@ -375,14 +377,12 @@
   function postCard(p) {
     const on = !!p.posted;
     const label = on ? "Mark as not posted" : "Mark as posted";
-    const day = on ? (isDate(p.posted) ? p.posted : "") : p.date;
     return `<div class="card">
       <div class="card-head">
         <button type="button" class="check${on ? " on" : ""}" data-check="${p.at}" aria-pressed="${on}" aria-label="${label}" title="${label}">${icon("check", 2)}</button>
         ${postLink(p, "card-title")}
       </div>
-      ${p.series ? `<div class="tags">${seriesTag(p.series)}</div>` : ""}
-      ${day ? `<span class="when">${esc(longDate(day))}</span>` : ""}
+      ${isDate(p.posted) ? `<span class="when">${esc(longDate(p.posted))}</span>` : ""}
     </div>`;
   }
 
@@ -391,9 +391,8 @@
   }
 
   function renderBoard() {
-    const drafts = data.posts.filter((p) => !p.posted).sort(newestFirst("date"));
-    // Posted: newest out first; one posted on an unknown day goes by the day it was written.
-    const posted = data.posts.filter((p) => p.posted).sort((a, b) => outDay(b).localeCompare(outDay(a)));
+    const drafts = data.posts.filter((p) => !p.posted).sort(byFile);
+    const posted = data.posts.filter((p) => p.posted).sort(byPosted);
     const shown = allPosted ? posted : posted.slice(0, POSTED_SHOWN);
     const more = posted.length > POSTED_SHOWN
       ? `<button type="button" class="more" data-more>${allPosted ? "Show fewer" : `Show all ${posted.length}`}</button>`
@@ -408,14 +407,12 @@
 
   // Every post in one table, drafts first, then newest out first.
   function renderTable() {
-    const rows = [...data.posts].sort((a, b) => (!!a.posted - !!b.posted) || outDay(b).localeCompare(outDay(a)));
+    const rows = [...data.posts].sort((a, b) => (!!a.posted - !!b.posted) || (a.posted ? byPosted(a, b) : byFile(a, b)));
     $("#table").innerHTML = rows.length ? `<div class="tbl-scroll"><table class="db">
-      <thead><tr><th>Post</th><th>Status</th><th>Series</th><th>Written</th><th>Posted</th></tr></thead>
+      <thead><tr><th>Post</th><th>Status</th><th>Posted</th></tr></thead>
       <tbody>${rows.map((p) => `<tr>
         <td class="name">${postLink(p, "")}</td>
         <td>${statusTag(p)}</td>
-        <td>${seriesTag(p.series)}</td>
-        <td class="date">${p.date ? esc(longDate(p.date)) : ""}</td>
         <td class="date">${isDate(p.posted) ? esc(longDate(p.posted)) : ""}</td>
       </tr>`).join("")}</tbody>
     </table></div>` : '<p class="empty">No posts yet.</p>';
