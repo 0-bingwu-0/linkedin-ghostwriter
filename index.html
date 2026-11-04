@@ -76,17 +76,12 @@
   .page { max-width: 1400px; margin: 0 auto; padding: 0 72px 120px; }
   .page-icon { display: block; width: 104px; height: 104px; margin: 44px 0 0 -4px; font-size: 88px; line-height: 104px; user-select: none; }
   .title { margin: 18px 0 14px; font-size: 40px; font-weight: 700; line-height: 1.2; }
-  /* Header and board share three columns, so the sticky note sits over the last lane */
-  .head, .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
-  .head { margin: 0 0 30px; }
-  .head-main { grid-column: span 2; min-width: 0; }
-  .note { position: relative; margin-top: -4px; padding: 14px 16px 12px; border-radius: 4px; background: #fffaf0; color: #3d3a32; box-shadow: 0 0 0 1px rgba(60, 50, 20, 0.08), 0 6px 16px rgba(60, 50, 20, 0.1); }
-  .note::before { content: ""; position: absolute; top: -6px; left: 50%; width: 12px; height: 12px; border-radius: 50%; background: #d9686a; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); transform: translateX(-50%); }
-  .note h3 { margin: 0 0 6px; color: rgba(61, 58, 50, 0.6); font-size: 12px; font-weight: 600; }
-  .note p { margin: 0; font-size: 14px; line-height: 1.4; }
-  .note p + p { margin-top: 6px; }
-  .note strong { font-weight: 600; }
-  .note span { color: rgba(61, 58, 50, 0.65); }
+  /* What to say in Chat: one line under the title */
+  .head { margin: 0 0 26px; }
+  .head .title { margin-bottom: 10px; }
+  .say { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0; color: var(--muted); font-size: 14px; }
+  .say b { height: 24px; padding: 0 8px; border-radius: 4px; background: var(--hover); color: var(--text); font-weight: 500; line-height: 24px; white-space: nowrap; }
+  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
 
   /* Lanes: ideas waiting, drafts to post, and what's out */
   .lane { min-width: 0; }
@@ -147,8 +142,7 @@
     .drop { opacity: 1; }
   }
   @media (max-width: 1040px) {
-    .head, .board { grid-template-columns: minmax(0, 1fr); }
-    .head-main { grid-column: auto; }
+    .board { grid-template-columns: minmax(0, 1fr); }
     .page { padding: 0 40px 96px; }
   }
   @media (max-width: 640px) {
@@ -173,10 +167,8 @@
   <main class="page">
     <div class="page-icon" role="img" aria-label="Notepad">🗒️</div>
     <div class="head">
-      <div class="head-main">
-        <h1 class="title">LinkedIn Ghostwriter</h1>
-      </div>
-      <aside class="note" id="start" aria-label="What to say in Chat"></aside>
+      <h1 class="title">LinkedIn Ghostwriter</h1>
+      <p class="say" id="start"></p>
     </div>
 
     <div class="board">
@@ -339,7 +331,7 @@
   function renderNote() {
     // "Set me up" only while the template's example is still here.
     const steps = [data.example && "Set me up.", "I have an idea: …", "Write about …"].filter(Boolean);
-    $("#start").innerHTML = `<h3>Say in Chat</h3>${steps.map((say) => `<p><strong>“${esc(say)}”</strong></p>`).join("")}`;
+    $("#start").innerHTML = `<span>Say in Chat</span>${steps.map((say) => `<b>“${esc(say)}”</b>`).join("")}`;
   }
 
   const postLink = (p) => (p.file
