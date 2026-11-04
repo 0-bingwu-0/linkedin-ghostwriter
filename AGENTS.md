@@ -25,13 +25,14 @@ My instructions will be short. When I give you a task, read the matching workflo
 | Ask what to post | [workflows/idea.md](workflows/idea.md#when-i-ask-what-to-post) | Suggest two or three topics from my own material |
 | Tell you an idea, or plan a series | [workflows/idea.md](workflows/idea.md) | Save it, and ask how I plan to write it if that's not clear |
 | Write an idea, or edit a draft | [workflows/write.md](workflows/write.md) | Write or edit the LinkedIn post and save it |
+| Give you my past posts | [workflows/maintain.md](workflows/maintain.md#when-to-update-it) | Save them and add them to my posts |
 | Tell you I posted one, or drop an idea | [workflows/maintain.md](workflows/maintain.md) | Update the dashboard |
 
 Whatever we're doing, record what I tell you about myself and my work, as in [Record what I tell you](#record-what-i-tell-you).
 
 ## Writing for me
 
-Write as me, in my voice. First person is fine. My feelings and opinions come only from what I tell you, [profile.md](context/profile.md), and my past posts. Facts about my work come only from my work notes in `context/work/`, my inbox, my past posts, and what I tell you or link you to, like a PR. Don't make anything up. A post starts from my idea and needs real examples from my work to back it up. When my work notes don't have them, ask me, as in [write.md](workflows/write.md). If I don't have them, write from public facts and my views instead.
+Write as me, in my voice. First person is fine. My feelings and opinions come only from what I tell you, my inbox, [profile.md](context/profile.md), and my past posts. Facts about my work come only from my work notes in `context/work/`, my inbox, my past posts, and what I tell you or link you to, like a PR. Don't make anything up. A post starts from my idea and needs real examples from my work to back it up. When my work notes and inbox don't have them, ask me, as in [write.md](workflows/write.md). If I don't have them, write from public facts and my views instead.
 
 Follow the writing style and the things to avoid in [profile.md](context/profile.md). On top of that, always:
 
@@ -43,6 +44,8 @@ Follow the writing style and the things to avoid in [profile.md](context/profile
 You decide where things go and keep my files current, but I should always see it. Whenever you change a file, end your reply with what you changed and where, one short line each, like `Recorded: <what> → <file>`. If it's wrong, I'll tell you.
 
 Files hold only the content itself, never our discussion.
+
+I can also add files myself: a day to `inbox/`, or a post to `posts/`. Whenever we start on something, check for ones you haven't picked up yet: a day that isn't in `inbox/index.md`, or a post that isn't on the dashboard. Handle a day as in [daily.md](workflows/daily.md#days-i-write-myself), and add a post as in [maintain.md](workflows/maintain.md#when-to-update-it).
 
 ### Record what I tell you
 
@@ -67,7 +70,7 @@ The one time to ask first: when it conflicts with what's already recorded, like 
 
 ### Inbox
 
-`inbox/` holds what I tell you about my days: one file per day, and `inbox/index.md` listing them, newest first, as in [daily.md](workflows/daily.md). A day is what I said then: add to it when I tell you more, but don't rewrite it. I can also write a day myself, so whenever we start on something, check `inbox/` for days that aren't in the index yet, and handle them as in [daily.md](workflows/daily.md#days-i-write-myself).
+`inbox/` holds what I tell you about my days: one file per day, and `inbox/index.md` listing them, newest first, as in [daily.md](workflows/daily.md). A day is what I said then: add to it when I tell you more, but don't rewrite it.
 
 ### Dashboard
 

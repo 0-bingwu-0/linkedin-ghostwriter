@@ -12,7 +12,8 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 * **After writing a post:** add it to `posts` as a draft, as in [write.md](write.md#saving). Then suggest removing the idea it came from, and remove it if I agree. For a series, mark the post as written in the plan instead, and suggest removing the idea once its last post is written.
 * **When I tell you I posted one:** set its `posted` to `true`.
 * **When I drop an idea:** remove it.
-* **When a post's file is added, renamed, or gone,** or its title changes: update its entry.
+* **When I give you past posts:** save each to `posts/` and add it here as posted, the same way as at [setup](setup.md).
+* **When a post's file is added, renamed, or gone,** or its title changes: update its entry. A file I add myself is a past post unless I say it's a draft.
 * **At setup:** replace the example, as in [setup.md](setup.md).
 
 ## Editing rules

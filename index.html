@@ -308,7 +308,8 @@
   // A post's date is the day it was written, from the start of its file name, so it's always right
   // and nothing else has to keep it. Posts go newest first by that name.
   const fileDate = (p) => (isDate(p.file.slice(0, 10)) ? p.file.slice(0, 10) : "");
-  const byFile = (a, b) => b.file.localeCompare(a.file);
+  // A past post with no date in its name goes last.
+  const byFile = (a, b) => (!!fileDate(b) - !!fileDate(a)) || b.file.localeCompare(a.file);
 
   // Each idea and post keeps `at`, its place in the file, so the page changes exactly that entry.
   function normalize(raw) {

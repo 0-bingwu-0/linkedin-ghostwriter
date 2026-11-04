@@ -10,7 +10,7 @@ Open this project in StashBase and tell the Agent:
 
 1. **"Set me up."** It asks you three quick questions, one at a time: who you are and what you work on, what you want to post about, and a few of your past LinkedIn posts so it can match your style. Then it sets up your profile and saves your past posts, and asks for your first idea.
 2. **"I have an idea: …"** Whenever something about your work strikes you, a sentence is enough, like "I have an idea: working code is only the starting bar in someone else's repo." It saves it to your ideas on the dashboard, and if it isn't clear how you'd tell it, asks how you plan to write it. No idea yet? Ask **"What should I post?"** and it suggests two or three from your inbox and work notes, saying where each comes from.
-3. **"Write about …"** Name the idea, like "Write about small PRs." It looks for examples in your work notes and asks you for what's missing, like which PR or what broke. What you add is saved to `context/work/`, so you won't have to explain it again. Then it writes the LinkedIn post and saves it to `posts/`, one file per post. Ask for any edits you want, like "Make the opening more casual."
+3. **"Write about …"** Name the idea, like "Write about small PRs." It looks for examples in your work notes and inbox, and asks you for what's missing, like which PR or what broke. What you add is saved to `context/work/`, so you won't have to explain it again. Then it writes the LinkedIn post and saves it to `posts/`, one file per post. Ask for any edits you want, like "Make the opening more casual."
 
 Some days you just want to write down what happened. Say **"Today I …"** and tell it, a few sentences or a messy brain dump. It keeps the day in your inbox and records anything new about your work, so it's there the next time you write. You can also write a day yourself, as a new file in `inbox/`; the Agent adds it to the list and picks up what's new.
 
@@ -22,7 +22,7 @@ The template comes with an example: a software developer a month into contributi
 
 Everything works in Chat, and you never have to open anything else. The dashboard shows where each post is at, kept current by the Agent.
 
-* **Ideas:** your ideas waiting to be written. Just tell the Agent one. Click one to see it from the side, with how you plan to tell it, or to drop it. A series, like an intro, three examples, and a wrap-up, stays here with its plan until the last post is written.
+* **Ideas:** your ideas waiting to be written. Just tell the Agent one. Click one to see it from the side, with how you plan to tell it. To drop one, use the trash can that shows when you hover over it. A series, like an intro, three examples, and a wrap-up, stays here with its plan until the last post is written.
 * **Drafts:** posts written but not out yet. Click one to open it.
 * **Posted:** what's out, newest first, past posts included. Tick a draft's circle once you've posted it, or just tell the Agent.
 
@@ -39,16 +39,16 @@ You can change things anytime:
 
 ## Files
 
-* `context/work/`: what the Agent knows about your work, organized by project.
+* `AGENTS.md`: the AI's persona, how it writes for you, the task index, and how it keeps your files.
+* `CLAUDE.md`: points Claude Code to `AGENTS.md`.
 * `context/profile.md`: your background, posting goals, posting angle, and writing style.
+* `context/work/`: what the Agent knows about your work, organized by project.
+* `inbox/`: what you've told it about your days, one file per day, with `index.md` listing them.
 * `posts/`: your LinkedIn posts, past and new, one file each.
 * `workflows/setup.md`: the setup Q&A.
 * `workflows/daily.md`: what happens when you tell it about your day.
-* `workflows/idea.md`: what happens when you tell it an idea.
+* `workflows/idea.md`: what happens when you tell it an idea, or ask what to post.
 * `workflows/write.md`: how to write and edit LinkedIn posts.
-* `AGENTS.md`: the AI's persona, how it writes for you, the task index, and how it keeps your files.
-* `CLAUDE.md`: points Claude Code to `AGENTS.md`.
 * `workflows/maintain.md`: how the Agent keeps the dashboard current, and the format of its data.
 * `index.html`: the dashboard.
-* `inbox/`: what you've told it about your days, one file per day, with `index.md` listing them.
 * `assets/`: the dashboard's data and banner.

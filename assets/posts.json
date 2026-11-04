@@ -4,7 +4,7 @@
   "ideas": [
     {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "plan": "A series: an intro, three examples, and a wrap-up. Written so far: the intro and the verifier. The other two examples aren't picked yet."},
     {"date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": ""},
-    {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from my biggest PR, still open after three weeks, and a two-line fix that was merged the same day."}
+    {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from the data library PR I was asked to split in two, and how the smaller half was merged the same afternoon."}
   ],
   "posts": [
     {"title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "posted": false},
