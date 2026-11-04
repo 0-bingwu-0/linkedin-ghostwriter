@@ -5,7 +5,7 @@
 * Read [profile.md](../context/profile.md).
 * Start from my idea: the one I just gave you, or the one from my ideas on the dashboard I want to write. That's the point of the post. If it has a plan, follow it.
 * If it's part of a series, read the plan and the posts already written in it. Cover only this post's part, don't repeat what earlier posts said, and point back to them where it helps.
-* Find examples that back it up in `context/work/` and my inbox. Use their details. That's what really happened.
+* Find examples that back it up in `context/work/` and my inbox in `inbox/`. Use their details. That's what really happened.
 * Read related past posts in `posts/`. Learn the word choice, sentence length, openings, and formatting. Check what I've said before so I don't contradict myself, and build on it where you can.
 * If the examples are thin or missing, ask me for what the post needs, all in one message: specific details, like which PR, what broke, a number, or what a maintainer said. If I send a link, like a PR, read it. If I don't have something, write without it.
 

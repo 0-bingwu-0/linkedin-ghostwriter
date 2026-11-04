@@ -65,6 +65,10 @@ The one time to ask first: when it conflicts with what's already recorded, like 
 * When something changes, like a PR getting merged, update what's there instead of adding a new entry.
 * Keep the details that make a story: names, numbers, what someone said, what broke, how it turned out, how I felt. Link the PR when there is one.
 
+### Inbox
+
+`inbox/` holds what I tell you about my days: one file per day, and `inbox/index.md` listing them, newest first, as in [daily.md](workflows/daily.md). A day is what I said then: add to it when I tell you more, but don't rewrite it.
+
 ### Dashboard
 
-The dashboard is `index.html`, and its data is `assets/posts.json`: my ideas waiting to be written, the list of my posts, and my inbox, which lives only there. Keep it current as in [maintain.md](workflows/maintain.md). The posts themselves stay in `posts/`, and the dashboard links to them. I can mark a post posted or drop an idea on the page too. You don't change `index.html` unless I ask.
+The dashboard is `index.html`, and its data is `assets/posts.json`: my ideas waiting to be written, and the list of my posts. Keep it current as in [maintain.md](workflows/maintain.md). The posts themselves stay in `posts/`, and the dashboard links to them. I can mark a post posted or drop an idea on the page too. You don't change `index.html` unless I ask.

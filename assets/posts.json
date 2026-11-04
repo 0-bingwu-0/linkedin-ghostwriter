@@ -11,21 +11,5 @@
     {"title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": true},
     {"title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": true},
     {"title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": true}
-  ],
-  "inbox": [
-    {"date": "2026-11-03", "notes": [
-      "The data library's maintainer asked me to split my PR in two. I was annoyed for about an hour. The smaller half got merged the same afternoon.",
-      "Spent the evening reading the command-line tool's tests before touching anything. I understand the code better from its tests than from its README."
-    ]},
-    {"date": "2026-10-31", "notes": [
-      "The verifier fix got merged after the second round of review. The maintainer said the test showing the old behavior was what convinced them."
-    ]},
-    {"date": "2026-10-28", "notes": [
-      "Took two hours to get the healthcare frontend running locally. Wrote the steps down as I went and opened a docs PR with them."
-    ]},
-    {"date": "2026-10-24", "notes": [
-      "First PR to the data library: a sort order that didn't match the rest of the file. Twenty minutes to write, two days to get a review.",
-      "Found the verifier bug while reading the model verification tool: with no hash on record, the check passes."
-    ]}
   ]
 }

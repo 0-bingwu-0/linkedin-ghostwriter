@@ -1,12 +1,11 @@
 # Keep the Dashboard Current
 
-The dashboard is `index.html`: my ideas waiting to be written, my drafts waiting to go out, and what I've posted, with my inbox one click away. Everything it shows comes from `assets/posts.json`, and keeping that file current is your job. The posts themselves stay in `posts/`, one file each; the JSON only lists them, and the dashboard links to each file. StashBase shows your changes within a couple of seconds, even while the dashboard is open.
+The dashboard is `index.html`: my ideas waiting to be written, my drafts waiting to go out, and what I've posted, with a button that opens my inbox. Everything it shows comes from `assets/posts.json`, and keeping that file current is your job. The posts themselves stay in `posts/`, one file each; the JSON only lists them, and the dashboard links to each file. StashBase shows your changes within a couple of seconds, even while the dashboard is open.
 
 I can do two things on the dashboard myself: mark a draft posted, or take it back, and drop an idea. The page saves those to the same file.
 
 ## When to update it
 
-* **When I tell you about my day:** add it to `inbox`, as in [daily.md](daily.md).
 * **When I tell you an idea:** add it to the top of `ideas`, as in [idea.md](idea.md). If it builds on one already there, update that one instead.
 * **When I say how I'd tell it:** put it in the idea's `plan`, in a few words.
 * **When an idea turns into a series:** write the posts in it into its `plan`, and which are already written.
@@ -34,9 +33,6 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
   ],
   "posts": [
     { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": true }
-  ],
-  "inbox": [
-    { "date": "2026-10-31", "notes": ["The verifier fix got merged after the second round of review. The maintainer said the test showing the old behavior was what convinced them."] }
   ]
 }
 ```
@@ -48,9 +44,7 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 * `posts` are my posts, past and new, newest first.
   * `title` is the `#` heading in its file. `file` is its file name in `posts/`. The dashboard links to it, and shows the date at the start of the name as the day it was written.
   * `posted` is `true` once it's out, `false` while it's a draft. Past posts I give you are posted.
-* `inbox` holds one entry per day I told you about, newest first.
-  * `date` is the day. `notes` are what happened, one line per thing, written as in [daily.md](daily.md#save-it). This is the only copy, so keep every detail.
 
 ## Size
 
-The dashboard holds up to 500 KB and 20,000 values. Each idea and post is one short entry, and a day takes a few hundred bytes, so that's years of use. If it ever gets close, move the oldest inbox days and posted posts to `assets/archive-<year>.json` and tell me. Look there when you need an older day. The post files stay in `posts/`.
+The dashboard holds up to 500 KB and 20,000 values. Each idea and post is one short entry, so that's thousands of them. If it ever gets close, move the oldest posted posts to `assets/archive-<year>.json` and tell me. Their files stay in `posts/`.

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2172 724" width="2172" height="724">
-  <!-- Line art on a transparent background: dark gray strokes, objects in coral, yellow, green, and white.
+  <!-- Line art on a transparent background: soft warm-gray strokes, objects in coral, yellow, green, and white.
        Everything sits between y 240 and 520, inside the band the dashboard shows after cropping (about 188 to 550). -->
-  <g fill="none" stroke="#3c3a36" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 18)">
+  <g fill="none" stroke="#6b665f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 18)">
 
     <!-- The line everything stands on -->
     <path d="M 180 500 H 1995"/>
@@ -10,11 +10,11 @@
     <g>
       <path d="M 340 250 V 226 M 272 278 L 254 260 M 408 278 L 426 260 M 246 346 H 222 M 434 346 H 458"/>
       <path d="M 304 404 C 268 380 258 332 280 298 C 300 268 338 262 340 262 C 342 262 380 268 400 298 C 422 332 412 380 376 404 L 372 432 H 308 Z" fill="#f2e49d"/>
-      <path d="M 326 404 V 378 Q 340 354 354 378 V 404" stroke-width="6"/>
-      <path d="M 300 318 C 304 302 314 292 326 288" stroke="#ffffff" stroke-width="9"/>
+      <path d="M 326 404 V 378 Q 340 354 354 378 V 404" stroke-width="4.5"/>
+      <path d="M 300 318 C 304 302 314 292 326 288" stroke="#ffffff" stroke-width="7"/>
       <rect x="306" y="432" width="68" height="20" rx="6" fill="#ffffff"/>
       <rect x="312" y="452" width="56" height="20" rx="6" fill="#ffffff"/>
-      <path d="M 322 472 H 358 L 350 494 H 330 Z" fill="#3c3a36"/>
+      <path d="M 322 472 H 358 L 350 494 H 330 Z" fill="#6b665f"/>
     </g>
 
     <!-- A draft: a clipboard with a few lines and a pencil -->
@@ -22,12 +22,12 @@
       <rect x="522" y="252" width="190" height="248" rx="16" fill="#e58283"/>
       <rect x="542" y="282" width="150" height="200" rx="6" fill="#ffffff"/>
       <rect x="582" y="236" width="70" height="34" rx="9" fill="#f2e49d"/>
-      <path d="M 562 322 H 668 M 562 350 H 652 M 562 378 H 672 M 562 406 H 618" stroke-width="6"/>
+      <path d="M 562 322 H 668 M 562 350 H 652 M 562 378 H 672 M 562 406 H 618" stroke-width="4.5"/>
       <g transform="rotate(-58 742 392)">
         <rect x="652" y="380" width="150" height="26" rx="3" fill="#f2e49d"/>
         <path d="M 652 380 H 676 V 406 H 652" fill="#e58283"/>
         <path d="M 802 380 L 838 393 L 802 406 Z" fill="#ffffff"/>
-        <path d="M 826 389 L 838 393 L 826 397 Z" fill="#3c3a36"/>
+        <path d="M 826 389 L 838 393 L 826 397 Z" fill="#6b665f"/>
       </g>
     </g>
 
@@ -36,20 +36,20 @@
       <rect x="840" y="214" width="500" height="272" rx="18" fill="#ffffff"/>
       <rect x="864" y="238" width="452" height="226" rx="8" fill="#fffaf0"/>
       <path d="M 802 486 H 1378 L 1394 500 H 786 Z" fill="#ffffff"/>
-      <path d="M 1050 486 H 1130" stroke-width="6"/>
+      <path d="M 1050 486 H 1130" stroke-width="4.5"/>
       <!-- the post card -->
-      <rect x="896" y="254" width="388" height="196" rx="10" fill="#ffffff" stroke-width="5"/>
-      <circle cx="932" cy="288" r="20" fill="#e58283" stroke-width="5"/>
+      <rect x="896" y="254" width="388" height="196" rx="10" fill="#ffffff" stroke-width="3.6"/>
+      <circle cx="932" cy="288" r="20" fill="#e58283" stroke-width="3.6"/>
       <g stroke="none">
-        <rect x="964" y="274" width="122" height="12" rx="6" fill="#3c3a36"/>
-        <rect x="964" y="294" width="78" height="9" rx="4.5" fill="#3c3a36" opacity="0.35"/>
-        <rect x="914" y="322" width="336" height="9" rx="4.5" fill="#3c3a36" opacity="0.35"/>
-        <rect x="914" y="340" width="300" height="9" rx="4.5" fill="#3c3a36" opacity="0.35"/>
+        <rect x="964" y="274" width="122" height="12" rx="6" fill="#6b665f"/>
+        <rect x="964" y="294" width="78" height="9" rx="4.5" fill="#6b665f" opacity="0.35"/>
+        <rect x="914" y="322" width="336" height="9" rx="4.5" fill="#6b665f" opacity="0.35"/>
+        <rect x="914" y="340" width="300" height="9" rx="4.5" fill="#6b665f" opacity="0.35"/>
       </g>
-      <rect x="914" y="360" width="352" height="46" rx="6" fill="#cee7aa" stroke-width="5"/>
-      <path d="M 1150 404 L 1192 372 L 1220 392 L 1236 380 L 1264 404" stroke-width="5"/>
+      <rect x="914" y="360" width="352" height="46" rx="6" fill="#cee7aa" stroke-width="3.6"/>
+      <path d="M 1150 404 L 1192 372 L 1220 392 L 1236 380 L 1264 404" stroke-width="3.6"/>
       <!-- like, comment, repost, send -->
-      <g stroke-width="4.5">
+      <g stroke-width="3.3">
         <path d="M 922 440 V 426 L 930 414 C 932 410 938 412 937 417 L 935 424 H 946 C 950 424 952 428 950 431 L 947 440 Z"/>
         <path d="M 1004 414 H 1028 C 1032 414 1034 416 1034 420 V 430 C 1034 434 1032 436 1028 436 H 1016 L 1008 442 V 436 H 1004 C 1000 436 998 434 998 430 V 420 C 998 416 1000 414 1004 414 Z"/>
         <path d="M 1086 422 H 1110 L 1104 416 M 1110 434 H 1086 L 1092 440"/>
@@ -59,24 +59,24 @@
 
     <!-- The ghostwriter: a little ghost holding a pen -->
     <g>
-      <ellipse cx="1578" cy="499" rx="62" ry="7" fill="#3c3a36" stroke="none" opacity="0.14"/>
+      <ellipse cx="1578" cy="499" rx="62" ry="7" fill="#6b665f" stroke="none" opacity="0.14"/>
       <path d="M 1504 338 C 1504 278 1538 240 1578 240 C 1618 240 1652 278 1652 338 V 462 Q 1640 484 1627 462 Q 1615 440 1603 462 Q 1590 484 1578 462 Q 1566 440 1553 462 Q 1541 484 1529 462 Q 1516 440 1504 462 Z" fill="#ffffff"/>
-      <ellipse cx="1552" cy="334" rx="9" ry="13" fill="#3c3a36" stroke="none"/>
-      <ellipse cx="1600" cy="334" rx="9" ry="13" fill="#3c3a36" stroke="none"/>
+      <ellipse cx="1552" cy="334" rx="9" ry="13" fill="#6b665f" stroke="none"/>
+      <ellipse cx="1600" cy="334" rx="9" ry="13" fill="#6b665f" stroke="none"/>
       <ellipse cx="1536" cy="364" rx="12" ry="7" fill="#e58283" stroke="none"/>
       <ellipse cx="1616" cy="364" rx="12" ry="7" fill="#e58283" stroke="none"/>
-      <path d="M 1564 372 Q 1576 384 1588 372" stroke-width="6"/>
+      <path d="M 1564 372 Q 1576 384 1588 372" stroke-width="4.5"/>
       <!-- a fountain pen, held out to the right -->
       <g transform="rotate(-38 1700 360)">
         <rect x="1650" y="346" width="120" height="28" rx="10" fill="#f2e49d"/>
         <rect x="1650" y="346" width="34" height="28" rx="8" fill="#e58283"/>
         <path d="M 1770 350 L 1808 360 L 1770 370 Z" fill="#ffffff"/>
-        <path d="M 1782 360 H 1800" stroke-width="4"/>
+        <path d="M 1782 360 H 1800" stroke-width="3"/>
       </g>
       <ellipse cx="1652" cy="392" rx="20" ry="14" fill="#ffffff" transform="rotate(-30 1652 392)"/>
       <!-- sparkles -->
-      <path d="M 1468 262 L 1474 278 L 1490 284 L 1474 290 L 1468 306 L 1462 290 L 1446 284 L 1462 278 Z" fill="#f2e49d" stroke-width="5"/>
-      <path d="M 1676 236 L 1680 246 L 1690 250 L 1680 254 L 1676 264 L 1672 254 L 1662 250 L 1672 246 Z" fill="#cee7aa" stroke-width="4.5"/>
+      <path d="M 1468 262 L 1474 278 L 1490 284 L 1474 290 L 1468 306 L 1462 290 L 1446 284 L 1462 278 Z" fill="#f2e49d" stroke-width="3.6"/>
+      <path d="M 1676 236 L 1680 246 L 1690 250 L 1680 254 L 1676 264 L 1672 254 L 1662 250 L 1672 246 Z" fill="#cee7aa" stroke-width="3.3"/>
     </g>
 
     <!-- Coffee, and a post flying off -->
@@ -84,10 +84,10 @@
       <path d="M 1806 384 C 1796 370 1816 360 1806 344 M 1840 384 C 1830 370 1850 360 1840 344"/>
       <rect x="1780" y="398" width="92" height="102" rx="12" fill="#e58283"/>
       <path d="M 1872 420 C 1912 420 1912 476 1872 476"/>
-      <path d="M 1800 430 H 1852" stroke="#ffffff" stroke-width="8"/>
+      <path d="M 1800 430 H 1852" stroke="#ffffff" stroke-width="6"/>
       <path d="M 1748 270 C 1730 258 1712 284 1700 270" stroke-dasharray="2 16"/>
       <path d="M 1760 276 L 1912 224 L 1846 316 L 1822 284 Z" fill="#ffffff"/>
-      <path d="M 1822 284 L 1912 224 M 1822 284 L 1830 318 L 1846 300" stroke-width="6"/>
+      <path d="M 1822 284 L 1912 224 M 1822 284 L 1830 318 L 1846 300" stroke-width="4.5"/>
     </g>
   </g>
 </svg>
