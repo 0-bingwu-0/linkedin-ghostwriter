@@ -10,7 +10,7 @@ If my setup message already answers some of these, skip them. If it includes sta
 
 Then, in one go:
 
-* Delete the example: every file in `context/work/` and `posts/`, the day files in `inbox/` and their lines in [index.md](../inbox/index.md), and in [posts.json](../assets/posts.json), `example` and every idea and post.
+* If the example is still here (`example` is `true` in [posts.json](../assets/posts.json)), delete it: every file in `context/work/` and `posts/`, the day files in `inbox/` and their lines in [index.md](../inbox/index.md), and in posts.json, `example` and every idea and post. If it's already gone, this is a second setup: keep everything and only update what my answers change.
 * Rewrite [profile.md](../context/profile.md) from my answers, in my own words, under its headings. Drop the example content and the line about it. Keep it short and specific. Take the writing style from the posts I pasted; without them, keep the example's writing style as a start, in the language I write to you in.
 * Record what I told you about my work in `context/work/`, as in [AGENTS.md](../AGENTS.md#work-notes).
 * Save each of my own past posts to `posts/`, as in [write.md](write.md#saving). Name it with the day it went out if I said, or else just a few words of its title. Add each to the dashboard as posted, as in [maintain.md](maintain.md#format). Posts from others aren't saved; they only shape the writing style.
