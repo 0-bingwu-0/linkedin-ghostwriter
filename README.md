@@ -12,7 +12,7 @@ Open this project in StashBase and tell the Agent:
 2. **"I have an idea: …"** Whenever something about your work strikes you, a sentence is enough, like "I have an idea: working code is only the starting bar in someone else's repo." It saves it to your ideas on the dashboard, and if it isn't clear how you'd tell it, asks how you plan to write it. No idea yet? Ask **"What should I post?"** and it suggests two or three from your inbox and work notes, saying where each comes from.
 3. **"Write about …"** Name the idea, like "Write about small PRs." It looks for examples in your work notes and asks you for what's missing, like which PR or what broke. What you add is saved to `context/work/`, so you won't have to explain it again. Then it writes the LinkedIn post and saves it to `posts/`, one file per post. Ask for any edits you want, like "Make the opening more casual."
 
-Some days you just want to write down what happened. Say **"Today I …"** and tell it, a few sentences or a messy brain dump. It keeps the day in your inbox and records anything new about your work, so it's there the next time you write.
+Some days you just want to write down what happened. Say **"Today I …"** and tell it, a few sentences or a messy brain dump. It keeps the day in your inbox and records anything new about your work, so it's there the next time you write. You can also write a day yourself, as a new file in `inbox/`; the Agent adds it to the list and picks up what's new.
 
 Open the dashboard, `index.html`, to see what's next: ideas waiting to be written, drafts waiting to go out, and what you've posted.
 

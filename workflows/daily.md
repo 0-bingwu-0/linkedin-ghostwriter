@@ -24,6 +24,10 @@ Then update [index.md](../inbox/index.md): for a new day, add a line at the top 
 - [Tuesday, November 3, 2026](2026-11-03.md): The whole day in one short sentence.
 ```
 
+## Days I write myself
+
+I can also write a day straight into `inbox/`. A day file that isn't in [index.md](../inbox/index.md) is one I wrote myself: add it to the index, record what's new from it as below, and tell me in a line. Don't change what I wrote.
+
 ## Record what's new
 
 Then record what's new about me or my work, as in [AGENTS.md](../AGENTS.md#record-what-i-tell-you). The inbox keeps what I said that day; my work notes keep where things stand now.

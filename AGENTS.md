@@ -46,12 +46,12 @@ Files hold only the content itself, never our discussion.
 
 ### Record what I tell you
 
-At any point, whatever we're doing, when I tell you something about myself or my work, record it right away, then tell me as above:
+At any point, whatever we're doing, when I tell you something about myself or my work, record it right away, then tell me as above. The same goes for what I write into my files myself, like a day I add to `inbox/`: when you come across something new there, record it the same way.
 
 * **About me** goes in [profile.md](context/profile.md), under the matching heading: my background, my goals, the views I keep coming back to. When I correct how something is written and it applies going forward, or give a standing instruction, like a hashtag for every post, update the writing style.
 * **About my work** goes in `context/work/`, as in [Work notes](#work-notes). A link I send counts too, like a PR.
 
-Record only what I tell you or a link I send shows. Don't ask me, or look things up on your own, just to fill gaps. Ask only when the post you're writing needs it.
+Record only what I tell you, what I write myself, or what a link I send shows. Don't ask me, or look things up on your own, just to fill gaps. Ask only when the post you're writing needs it.
 
 The one time to ask first: when it conflicts with what's already recorded, like a different number or a view that's changed. Then ask before you change it.
 
@@ -67,7 +67,7 @@ The one time to ask first: when it conflicts with what's already recorded, like 
 
 ### Inbox
 
-`inbox/` holds what I tell you about my days: one file per day, and `inbox/index.md` listing them, newest first, as in [daily.md](workflows/daily.md). A day is what I said then: add to it when I tell you more, but don't rewrite it.
+`inbox/` holds what I tell you about my days: one file per day, and `inbox/index.md` listing them, newest first, as in [daily.md](workflows/daily.md). A day is what I said then: add to it when I tell you more, but don't rewrite it. I can also write a day myself, so whenever we start on something, check `inbox/` for days that aren't in the index yet, and handle them as in [daily.md](workflows/daily.md#days-i-write-myself).
 
 ### Dashboard
 
