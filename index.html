@@ -20,7 +20,7 @@
     --card-shadow: rgba(15, 15, 15, 0.07) 0 0 0 1px, rgba(15, 15, 15, 0.06) 0 2px 4px;
     /* The Workout Tracker's colors: coral, yellow, green, and its Notion blue, plus a ghostly lavender behind the banner.
        Tags and columns use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
-    --banner: #c7bdea;
+    --banner: #ddd7f2;
     --inbox-bg: rgba(229, 130, 131, 0.2); --inbox-hover: rgba(229, 130, 131, 0.32);
     /* Board columns: a faint wash of each status's color, like a Notion board */
     --lane-yellow: rgba(242, 228, 157, 0.22); --lane-blue: rgba(211, 229, 239, 0.42); --lane-green: rgba(206, 231, 170, 0.26);
@@ -177,9 +177,15 @@
   .card-head { display: flex; align-items: flex-start; gap: 7px; }
   .card-icon { flex: none; width: 18px; font-size: 14px; line-height: 20px; text-align: center; }
   .card-title { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; overflow-wrap: anywhere; }
-  button.card { width: 100%; text-align: left; }
-  button.card:hover { background: color-mix(in srgb, var(--card), var(--text) 3%); }
-  button.card[aria-expanded="true"] { box-shadow: 0 0 0 1.5px var(--d-yellow), var(--card-shadow); }
+  /* An idea card opens on click; a trash can shows on hover, to drop it without opening it */
+  .idea-card { position: relative; padding: 0; }
+  .idea-card:hover { background: color-mix(in srgb, var(--card), var(--text) 3%); }
+  .idea-card.open { box-shadow: 0 0 0 1.5px var(--d-yellow), var(--card-shadow); }
+  .idea-open { display: block; width: 100%; padding: 9px 36px 10px 10px; border-radius: 6px; text-align: left; }
+  .card-drop { position: absolute; top: 7px; right: 6px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 4px; color: var(--faint); opacity: 0; }
+  .idea-card:hover .card-drop, .card-drop:focus-visible { opacity: 1; }
+  .card-drop:hover { background: var(--hover); color: var(--muted); }
+  @media (hover: none) { .card-drop { opacity: 1; } }
   a.card-title { text-decoration: none; }
   a.card-title:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
   .when { color: var(--muted); font-size: 12px; }
@@ -463,9 +469,13 @@
 
   // An idea shows just its line on the board; click it to see the plan on the right.
   function ideaCard(i) {
-    return `<button type="button" class="card" data-idea="${i.at}" aria-expanded="${side?.kind === "idea" && side.at === i.at}">
-      <span class="card-head"><span class="card-icon" aria-hidden="true">💡</span><span class="card-title">${esc(i.idea)}</span></span>
-    </button>`;
+    const open = side?.kind === "idea" && side.at === i.at;
+    return `<div class="card idea-card${open ? " open" : ""}">
+      <button type="button" class="idea-open" data-idea="${i.at}" aria-expanded="${open}">
+        <span class="card-head"><span class="card-icon" aria-hidden="true">💡</span><span class="card-title">${esc(i.idea)}</span></span>
+      </button>
+      <button type="button" class="card-drop" data-drop="${i.at}" aria-label="Drop this idea" title="Drop this idea">${icon("trash")}</button>
+    </div>`;
   }
 
   function renderSide() {
@@ -690,6 +700,8 @@
       event.preventDefault();
       return navigate(link.getAttribute("href"));
     }
+    const drop = t.closest("[data-drop]");
+    if (drop) return dropIdea(Number(drop.dataset.drop));
     const idea = t.closest("[data-idea]");
     if (idea) return openSide({ kind: "idea", at: Number(idea.dataset.idea) });
     const day = t.closest("[data-day]");
