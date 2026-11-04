@@ -88,11 +88,9 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
-  /* The inbox is one click away, in the banner's lavender. No count: it's a log, not something waiting to be read.
-     It shows the latest day instead, so there's a reason to look. */
+  /* The inbox is one click away, in the banner's lavender. No count or date: it's a log, not something waiting to be read. */
   .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; background: var(--inbox-bg); color: var(--text); font-size: 14px; text-decoration: none; white-space: nowrap; }
   .inbox-btn:hover { background: var(--inbox-hover); }
-  .inbox-last { color: var(--muted); font-size: 13px; }
 
   /* Sub-page top bar, Notion style: stays at the top while scrolling, with a back button and the page path. Hidden on home. */
   .topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 4px; height: 44px; padding: 0 12px; background: var(--bg); view-transition-name: topbar; }
@@ -273,7 +271,7 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
-      <a class="inbox-btn" href="#/inbox" data-route><span aria-hidden="true" id="inbox-icon">📬</span>Inbox<span class="inbox-last" id="inbox-last"></span></a>
+      <a class="inbox-btn" href="#/inbox" data-route><span aria-hidden="true" id="inbox-icon">📬</span>Inbox</a>
     </div>
 
     <div class="board" id="board">
@@ -544,9 +542,8 @@
     $("#table").hidden = view !== "table";
     renderBoard();
     renderTable();
-    // A mailbox with its flag up when there's something in it, and the latest day.
+    // A mailbox with its flag up when there's something in it.
     $("#inbox-icon").textContent = data.inbox.length ? "📬" : "📭";
-    $("#inbox-last").textContent = data.inbox.length ? `· ${parse(data.inbox[0].date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}` : "";
     if (route === "inbox") renderInbox();
     if (side) renderSide();
   }
