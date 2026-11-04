@@ -287,13 +287,13 @@
     const [y, m, d] = s.split("-").map(Number);
     return new Date(y, m - 1, d);
   };
-  const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   const longDate = (s) => parse(s).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // Newest first; anything without a date goes last.
   const newestFirst = (key) => (a, b) => (b[key] || "").localeCompare(a[key] || "");
-  // Drafts go newest first by file name, which starts with the day it was written; posted ones by the day they went out.
+  // A post's date is the day it was written, from the start of its file name, so it's always right
+  // and nothing else has to keep it. Posts go newest first by that name.
+  const fileDate = (p) => (isDate(p.file.slice(0, 10)) ? p.file.slice(0, 10) : "");
   const byFile = (a, b) => b.file.localeCompare(a.file);
-  const byPosted = (a, b) => (isDate(b.posted) ? b.posted : "").localeCompare(isDate(a.posted) ? a.posted : "") || byFile(a, b);
 
   // Each idea and post keeps `at`, its place in the file, so the page changes exactly that entry.
   function normalize(raw) {
@@ -310,7 +310,7 @@
         at,
         title: str(p.title).trim(),
         file: str(p.file).trim(),
-        posted: isDate(p.posted) ? p.posted : p.posted === true ? true : null,
+        posted: p.posted === true || isDate(p.posted),
       } : null)).filter((p) => p && p.title),
     };
   }
@@ -425,7 +425,7 @@
         <button type="button" class="check${on ? " on" : ""}" data-check="${p.at}" aria-pressed="${on}" aria-label="${label}" title="${label}">${icon("check", 2)}</button>
         ${postLink(p, "card-title")}
       </div>
-      ${isDate(p.posted) ? `<span class="when">${esc(longDate(p.posted))}</span>` : ""}
+      ${fileDate(p) ? `<span class="when">${esc(longDate(fileDate(p)))}</span>` : ""}
     </div>`;
   }
 
@@ -435,7 +435,7 @@
 
   function renderBoard() {
     const drafts = data.posts.filter((p) => !p.posted).sort(byFile);
-    const posted = data.posts.filter((p) => p.posted).sort(byPosted);
+    const posted = data.posts.filter((p) => p.posted).sort(byFile);
     const shown = allPosted ? posted : posted.slice(0, POSTED_SHOWN);
     const more = posted.length > POSTED_SHOWN
       ? `<button type="button" class="more" data-more>${allPosted ? "Show fewer" : `Show all ${posted.length}`}</button>`
@@ -450,13 +450,13 @@
 
   // Every post in one table, drafts first, then newest out first.
   function renderTable() {
-    const rows = [...data.posts].sort((a, b) => (!!a.posted - !!b.posted) || (a.posted ? byPosted(a, b) : byFile(a, b)));
+    const rows = [...data.posts].sort((a, b) => (a.posted - b.posted) || byFile(a, b));
     $("#table").innerHTML = rows.length ? `<div class="tbl-scroll"><table class="db">
-      <thead><tr><th>Post</th><th>Status</th><th>Posted</th></tr></thead>
+      <thead><tr><th>Post</th><th>Status</th><th>Written</th></tr></thead>
       <tbody>${rows.map((p) => `<tr>
         <td class="name">${postLink(p, "")}</td>
         <td>${statusTag(p)}</td>
-        <td class="date">${isDate(p.posted) ? esc(longDate(p.posted)) : ""}</td>
+        <td class="date">${fileDate(p) ? esc(longDate(fileDate(p))) : ""}</td>
       </tr>`).join("")}</tbody>
     </table></div>` : '<p class="empty">No posts yet.</p>';
   }
@@ -476,7 +476,7 @@
   function togglePosted(at) {
     const p = arr(raw.posts)[at];
     if (!isObj(p)) return;
-    p.posted = p.posted ? null : keyOf(new Date());
+    p.posted = !(p.posted === true || isDate(p.posted));
     commit();
   }
 

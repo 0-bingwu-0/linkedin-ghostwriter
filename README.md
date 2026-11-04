@@ -24,7 +24,7 @@ Everything works in Chat, and you never have to open anything else. The dashboar
 * **Drafts:** posts written but not out yet. Click one to open it.
 * **Posted:** what's out, newest first, past posts included. Tick a draft's circle once you've posted it, or just tell the Agent.
 
-Switch to **All posts** to see every post in one table, with its status and the day it went out.
+Switch to **All posts** to see every post in one table, with its status and the day it was written.
 
 ## Make it yours
 

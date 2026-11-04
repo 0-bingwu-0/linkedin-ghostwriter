@@ -10,7 +10,7 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 * **When I say how I'd tell it:** put it in the idea's `plan`, in a few words.
 * **When an idea turns into a series:** write the posts in it into its `plan`, and which are already written.
 * **After writing a post:** add it to `posts` as a draft, as in [write.md](write.md#saving). Then suggest removing the idea it came from, and remove it if I agree. For a series, mark the post as written in the plan instead, and suggest removing the idea once its last post is written.
-* **When I tell you I posted one:** set its `posted` to today, unless I say another day.
+* **When I tell you I posted one:** set its `posted` to `true`.
 * **When I drop an idea:** remove it.
 * **When a post's file is added, renamed, or gone,** or its title changes: update its entry.
 * **At setup:** replace the example, as in [setup.md](setup.md).
@@ -32,7 +32,7 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
     { "date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": "" }
   ],
   "posts": [
-    { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": "2026-11-04" }
+    { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": true }
   ]
 }
 ```
@@ -42,8 +42,8 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
   * `date` is the day it was added. `idea` is the idea, close to my words.
   * `plan` is how I'd tell it. For a series, it's the posts in it, which are written, and what's still open; a series stays here until its last post is written. Leave the plan empty until I've said.
 * `posts` are my posts, past and new, newest first.
-  * `title` is the `#` heading in its file. `file` is its file name in `posts/`.
-  * `posted` is the day it went out, `true` if it went out but I don't know the day, or `null` while it's a draft. Past posts I give you are posted.
+  * `title` is the `#` heading in its file. `file` is its file name in `posts/`. The dashboard links to it, and shows the date at the start of the name as the day it was written.
+  * `posted` is `true` once it's out, `false` while it's a draft. Past posts I give you are posted.
 
 ## Size
 
