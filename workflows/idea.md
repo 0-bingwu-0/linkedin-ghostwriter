@@ -10,4 +10,4 @@ When I tell you one, in one go:
 
 When I answer, add it to the idea as its `plan`, in a few words. If I want to write it now, go to [write.md](write.md).
 
-If I plan it as a series, mark the idea as one and write the plan into it, like how many posts and what each covers. If some posts are already written for it, set their `series`, as in [maintain.md](maintain.md#format).
+If I plan it as a series, write the plan into the idea: how many posts, what each covers, and which are already written.

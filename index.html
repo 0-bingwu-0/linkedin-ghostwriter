@@ -28,7 +28,6 @@
     --t-yellow: rgba(242, 228, 157, 0.65); --f-yellow: #5c4d12; --d-yellow: #cfb23a;
     --t-green: rgba(206, 231, 170, 0.7); --f-green: #35501a; --d-green: #86b856;
     --t-blue: #d3e5ef; --f-blue: #183347; --d-blue: #5b97bd;
-    --t-teal: rgba(179, 227, 223, 0.65); --f-teal: #1f4f4b; --d-teal: #5fb3ab;
     --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Apple Color Emoji", Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
@@ -47,11 +46,11 @@
       --card-shadow: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 4px;
       --lane-yellow: rgba(242, 228, 157, 0.06); --lane-blue: rgba(94, 167, 216, 0.08); --lane-green: rgba(206, 231, 170, 0.06);
       --t-gray: #3f4245;
-      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-blue: #27405a; --t-teal: rgba(179, 227, 223, 0.2);
+      --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-blue: #27405a;
       --f-gray: rgba(255, 255, 255, 0.86);
-      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-blue: var(--f-gray); --f-teal: var(--f-gray);
+      --f-coral: var(--f-gray); --f-yellow: var(--f-gray); --f-green: var(--f-gray); --f-blue: var(--f-gray);
       --d-gray: #8f8f8f;
-      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-blue: #5ea7d8; --d-teal: #b3e3df;
+      --d-coral: #e58283; --d-yellow: #f2e49d; --d-green: #cee7aa; --d-blue: #5ea7d8;
     }
   }
   * { box-sizing: border-box; }
@@ -87,11 +86,38 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
+  .ideas-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 14px; white-space: nowrap; }
+  .ideas-btn:hover { background: var(--hover); }
+
+  /* Ideas open from the right, over half the screen; they're jotted down, not the main view */
+  .side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    width: clamp(360px, 50vw, 640px);
+    max-width: 100vw;
+    background: var(--bg);
+    box-shadow: var(--pop-shadow);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), visibility 0s linear 0.28s;
+  }
+  .side.open { transform: none; visibility: visible; transition: transform 0.28s cubic-bezier(0.2, 0, 0, 1), visibility 0s; }
+  .side-head { display: flex; flex: none; align-items: center; gap: 8px; height: 52px; padding: 0 12px 0 20px; border-bottom: 1px solid var(--line); }
+  .side-head h2 { margin: 0; font-size: 16px; font-weight: 600; }
+  .side-close { display: grid; place-items: center; width: 28px; height: 28px; margin-left: auto; border-radius: 4px; color: var(--faint); }
+  .side-close:hover { background: var(--hover); color: var(--muted); }
+  .side-body { flex: 1; overflow-y: auto; padding: 14px 20px 60px; background: var(--lane-yellow); }
+  .side-body .cards { margin-top: 0; }
+  .side-body .empty { margin: 4px 2px; }
 
   /* Board: one tinted column per status, each with a status pill on top */
-  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 360px)); gap: 12px; align-items: start; overflow-x: auto; }
+  .board { display: grid; grid-template-columns: repeat(2, minmax(0, 420px)); gap: 12px; align-items: start; }
   .lane { min-width: 0; padding: 6px 6px 8px; border-radius: 8px; background: var(--lane); }
-  .lane.yellow { --lane: var(--lane-yellow); }
   .lane.blue { --lane: var(--lane-blue); }
   .lane.green { --lane: var(--lane-green); }
   .lane-head { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px; }
@@ -108,7 +134,6 @@
   a.card-title { text-decoration: none; }
   a.card-title:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
   .plan { display: -webkit-box; margin: 0; overflow: hidden; color: var(--muted); font-size: 13px; line-height: 1.45; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
-  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
   .when { color: var(--muted); font-size: 12px; }
   .drop { display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 4px; color: var(--faint); opacity: 0; }
   .card:hover .drop, .drop:focus-visible { opacity: 1; }
@@ -127,7 +152,6 @@
   .k-yellow { --tb: var(--t-yellow); --tf: var(--f-yellow); --td: var(--d-yellow); }
   .k-green { --tb: var(--t-green); --tf: var(--f-green); --td: var(--d-green); }
   .k-blue { --tb: var(--t-blue); --tf: var(--f-blue); --td: var(--d-blue); }
-  .k-teal { --tb: var(--t-teal); --tf: var(--f-teal); --td: var(--d-teal); }
 
   /* All posts: a plain database table */
   .tbl-scroll { overflow-x: auto; }
@@ -158,8 +182,12 @@
   @media (max-width: 1040px) {
     .page { padding: 0 40px 96px; }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .side, .side.open { transition: none; }
+  }
   @media (max-width: 760px) {
     .board { grid-template-columns: minmax(0, 1fr); }
+    .side { width: 100vw; }
   }
   @media (max-width: 640px) {
     .page { padding: 0 18px 80px; }
@@ -188,13 +216,10 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
+      <button type="button" class="ideas-btn" data-open-ideas aria-controls="side" aria-expanded="false"><span aria-hidden="true">💡</span>Ideas<span class="count" id="n-ideas"></span></button>
     </div>
 
     <div class="board" id="board">
-      <section class="lane yellow" aria-label="Ideas">
-        <div class="lane-head"><span class="tag status k-yellow">Ideas</span><span class="count" id="n-ideas"></span></div>
-        <div id="ideas"></div>
-      </section>
       <section class="lane blue" aria-label="Drafts">
         <div class="lane-head"><span class="tag status k-blue">Drafts</span><span class="count" id="n-drafts"></span></div>
         <div id="drafts"></div>
@@ -206,6 +231,14 @@
     </div>
     <div id="table" hidden></div>
   </main>
+
+  <aside class="side" id="side" aria-label="Ideas" inert>
+    <div class="side-head">
+      <span aria-hidden="true">💡</span><h2>Ideas</h2>
+      <button type="button" class="side-close" data-close-ideas aria-label="Close" title="Close"><span data-icon="x"></span></button>
+    </div>
+    <div class="side-body" id="ideas"></div>
+  </aside>
 
   <div class="modal" id="modal" hidden>
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -266,13 +299,11 @@
         date: isDate(i.date) ? i.date : "",
         idea: str(i.idea).trim(),
         plan: str(i.plan).trim(),
-        series: i.series === true,
       } : null)).filter((i) => i && i.idea).sort(newestFirst("date")),
       posts: arr(src.posts).map((p, at) => (isObj(p) ? {
         at,
         title: str(p.title).trim(),
         file: str(p.file).trim(),
-        series: str(p.series).trim(),
         posted: isDate(p.posted) ? p.posted : p.posted === true ? true : null,
       } : null)).filter((p) => p && p.title),
     };
@@ -361,7 +392,6 @@
   const statusTag = (p) => (p.posted ? '<span class="tag status k-green">Posted</span>' : '<span class="tag status k-blue">Draft</span>');
 
   function ideaCard(i) {
-    const written = i.series ? data.posts.filter((p) => p.series === i.idea).length : 0;
     return `<div class="card">
       <div class="card-head">
         <span class="card-icon" aria-hidden="true">💡</span>
@@ -369,7 +399,6 @@
         <button type="button" class="drop" data-drop="${i.at}" aria-label="Drop this idea" title="Drop this idea">${icon("x")}</button>
       </div>
       ${i.plan ? `<p class="plan" title="${esc(i.plan)}">${esc(i.plan)}</p>` : ""}
-      ${i.series ? `<div class="tags"><span class="tag k-teal">Series · ${written} written</span></div>` : ""}
       ${i.date ? `<span class="when">${esc(longDate(i.date))}</span>` : ""}
     </div>`;
   }
@@ -470,8 +499,27 @@
     if (button) closeModal(button.dataset.modal === "ok");
     else if (event.target === modalEl) closeModal(false);
   });
+  const sideEl = $("#side");
+  function openIdeas() {
+    sideEl.classList.add("open");
+    sideEl.removeAttribute("inert");
+    $("[data-open-ideas]").setAttribute("aria-expanded", "true");
+    sideEl.querySelector("[data-close-ideas]").focus({ preventScroll: true });
+  }
+  function closeIdeas() {
+    if (!sideEl.classList.contains("open")) return;
+    sideEl.classList.remove("open");
+    sideEl.setAttribute("inert", "");
+    $("[data-open-ideas]").setAttribute("aria-expanded", "false");
+  }
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modalEl.hidden) closeModal(false);
+    if (event.key !== "Escape") return;
+    if (!modalEl.hidden) closeModal(false);
+    else closeIdeas();
+  });
+  // A click anywhere else closes the panel.
+  document.addEventListener("pointerdown", (event) => {
+    if (!sideEl.contains(event.target) && !event.target.closest("[data-open-ideas], .modal, .toast")) closeIdeas();
   });
 
   document.addEventListener("click", (event) => {
@@ -480,6 +528,8 @@
     if (check) return togglePosted(Number(check.dataset.check));
     const drop = t.closest("[data-drop]");
     if (drop) return dropIdea(Number(drop.dataset.drop));
+    if (t.closest("[data-open-ideas]")) return sideEl.classList.contains("open") ? closeIdeas() : openIdeas();
+    if (t.closest("[data-close-ideas]")) return closeIdeas();
     const tab = t.closest("[data-view]");
     if (tab) {
       view = tab.dataset.view;

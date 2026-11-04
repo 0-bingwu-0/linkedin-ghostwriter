@@ -2,13 +2,13 @@
   "schemaVersion": 1,
   "example": true,
   "ideas": [
-    {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "series": true, "plan": "An intro, three examples, one per post, and a wrap-up. The first example is the verifier that passed when it should have failed. The other two aren't picked yet."},
+    {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "plan": "A series: an intro, three examples, and a wrap-up. Written so far: the intro and the verifier. The other two examples aren't picked yet."},
     {"date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": ""},
     {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from my biggest PR, still open after three weeks, and a two-line fix that was merged the same day."}
   ],
   "posts": [
-    {"title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "series": "Done means something different in someone else's project", "posted": null},
-    {"title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04"},
+    {"title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "posted": null},
+    {"title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": "2026-11-04"},
     {"title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": "2026-10-14"},
     {"title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": "2026-09-22"}
   ]

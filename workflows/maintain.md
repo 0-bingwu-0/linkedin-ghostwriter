@@ -8,8 +8,8 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 
 * **When I tell you an idea:** add it to the top of `ideas`, as in [idea.md](idea.md). If it builds on one already there, update that one instead.
 * **When I say how I'd tell it:** put it in the idea's `plan`, in a few words.
-* **When an idea turns into a series:** set its `series` to `true`, write the posts in it into `plan`, and set `series` on any posts already written for it.
-* **After writing a post:** add it to `posts` as a draft, as in [write.md](write.md#saving). Then suggest removing the idea it came from, and remove it if I agree. For a series, update the plan instead, and suggest removing the idea once its last post is written.
+* **When an idea turns into a series:** write the posts in it into its `plan`, and which are already written.
+* **After writing a post:** add it to `posts` as a draft, as in [write.md](write.md#saving). Then suggest removing the idea it came from, and remove it if I agree. For a series, mark the post as written in the plan instead, and suggest removing the idea once its last post is written.
 * **When I tell you I posted one:** set its `posted` to today, unless I say another day.
 * **When I drop an idea:** remove it.
 * **When a post's file is added, renamed, or gone,** or its title changes: update its entry.
@@ -28,11 +28,11 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 {
   "example": true,
   "ideas": [
-    { "date": "2026-11-04", "idea": "Done means something different in someone else's project", "series": true, "plan": "An intro, three examples, one per post, and a wrap-up." },
+    { "date": "2026-11-04", "idea": "Done means something different in someone else's project", "plan": "A series: an intro, three examples, one per post, and a wrap-up. The intro is written." },
     { "date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": "" }
   ],
   "posts": [
-    { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "series": "Done means something different in someone else's project", "posted": "2026-11-04" }
+    { "title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": "2026-11-04" }
   ]
 }
 ```
@@ -40,11 +40,9 @@ I can do two things on the dashboard myself: mark a draft posted, or take it bac
 * `example` is `true` only while the template's example is in place; the dashboard then also tells people to say "Set me up." Setup removes it.
 * `ideas` are my ideas waiting to be written, newest first.
   * `date` is the day it was added. `idea` is the idea, close to my words.
-  * `plan` is how I'd tell it, or for a series, the posts in it and what's still open. Leave it empty until I've said.
-  * `series` is `true` for a series. A series stays here until its last post is written.
+  * `plan` is how I'd tell it. For a series, it's the posts in it, which are written, and what's still open; a series stays here until its last post is written. Leave the plan empty until I've said.
 * `posts` are my posts, past and new, newest first.
   * `title` is the `#` heading in its file. `file` is its file name in `posts/`.
-  * `series` is the `idea` of the series it's part of. Leave it out otherwise. The dashboard doesn't show it on the post; it counts the posts written for each series, and you use it to find the earlier posts in a series.
   * `posted` is the day it went out, `true` if it went out but I don't know the day, or `null` while it's a draft. Past posts I give you are posted.
 
 ## Size

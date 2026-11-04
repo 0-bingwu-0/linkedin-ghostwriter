@@ -12,7 +12,7 @@ Open this project in StashBase and tell the Agent:
 2. **"I have an idea: …"** Whenever something about your work strikes you, a sentence is enough, like "I have an idea: working code is only the starting bar in someone else's repo." It saves it to your ideas on the dashboard, and if it isn't clear how you'd tell it, asks how you plan to write it.
 3. **"Write about …"** Name the idea, like "Write about small PRs." It looks for examples in your work notes and asks you for what's missing, like which PR or what broke. What you add is saved to `context/work/`, so you won't have to explain it again. Then it writes the LinkedIn post and saves it to `posts/`, one file per post. Ask for any edits you want, like "Make the opening more casual."
 
-Open the dashboard, `index.html`, to see what's next: ideas waiting to be written, drafts waiting to go out, and what you've posted.
+Open the dashboard, `index.html`, to see what's next: drafts waiting to go out and what you've posted, with your ideas a click away.
 
 The template comes with an example: a software developer a month into contributing to open source, with notes on that work, a few ideas including a series, a draft, and some past posts. Setup replaces it with yours.
 
@@ -20,7 +20,7 @@ The template comes with an example: a software developer a month into contributi
 
 Everything works in Chat, and you never have to open anything else. The dashboard shows where each post is at, kept current by the Agent.
 
-* **Ideas:** your ideas waiting to be written, with how you plan to tell them. Just tell the Agent one. A series, like an intro, three examples, and a wrap-up, stays here with its plan until the last post is written. Drop an idea you no longer want with ×.
+* **Ideas:** click **Ideas** at the top, and they open from the side, each with how you plan to tell it. Just tell the Agent one. A series, like an intro, three examples, and a wrap-up, stays here with its plan until the last post is written. Drop an idea you no longer want with ×.
 * **Drafts:** posts written but not out yet. Click one to open it.
 * **Posted:** what's out, newest first, past posts included. Tick a draft's circle once you've posted it, or just tell the Agent.
 

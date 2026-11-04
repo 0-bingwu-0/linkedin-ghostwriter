@@ -36,6 +36,6 @@ Post text
 **First comment:** Comment text (if any)
 ```
 
-Then add it to the dashboard as a draft, as in [maintain.md](maintain.md#format): its title, file name, and series if it's in one. Then, in your reply, suggest removing the idea it came from, and remove it if I agree. For a series, update the plan instead, and suggest removing the idea once the last post is written.
+Then add it to the dashboard as a draft, as in [maintain.md](maintain.md#format): its title and file name. Then, in your reply, suggest removing the idea it came from, and remove it if I agree. For a series, mark the post as written in the plan instead, and suggest removing the idea once the last post is written.
 
 When editing, save changes in the post's file.
