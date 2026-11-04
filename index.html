@@ -17,11 +17,12 @@
     --pop: #ffffff;
     --pop-shadow: rgba(15, 15, 15, 0.05) 0 0 0 1px, rgba(15, 15, 15, 0.1) 0 3px 6px, rgba(15, 15, 15, 0.2) 0 9px 24px;
     --card: #ffffff;
-    --card-shadow: rgba(15, 15, 15, 0.07) 0 0 0 1px, rgba(15, 15, 15, 0.07) 0 2px 4px;
+    --card-shadow: rgba(15, 15, 15, 0.07) 0 0 0 1px, rgba(15, 15, 15, 0.06) 0 2px 4px;
     /* The Workout Tracker's colors: coral, yellow, and green, plus the teal of the banner's background.
-       Headings and tags use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
+       Tags and columns use only these, plus gray. The banner keeps its color in dark mode, so the drawing stays readable. */
     --banner: #b4e0db;
-    --c-coral: rgba(229, 130, 131, 0.42); --c-yellow: rgba(242, 228, 157, 0.5); --c-green: rgba(206, 231, 170, 0.5); --c-teal: rgba(179, 227, 223, 0.5);
+    /* Board columns: a faint wash of each status's color, like a Notion board */
+    --lane-gray: rgba(55, 53, 47, 0.035); --lane-yellow: rgba(242, 228, 157, 0.22); --lane-green: rgba(206, 231, 170, 0.26);
     --t-gray: rgba(227, 226, 224, 0.6); --f-gray: #32302c; --d-gray: #91918e;
     --t-coral: rgba(229, 130, 131, 0.3); --f-coral: #6b2a2b; --d-coral: #d9686a;
     --t-yellow: rgba(242, 228, 157, 0.65); --f-yellow: #5c4d12; --d-yellow: #cfb23a;
@@ -43,7 +44,7 @@
       --pop-shadow: rgba(255, 255, 255, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 3px 6px, rgba(0, 0, 0, 0.45) 0 9px 24px;
       --card: #252525;
       --card-shadow: rgba(255, 255, 255, 0.07) 0 0 0 1px, rgba(0, 0, 0, 0.3) 0 2px 4px;
-      --c-coral: rgba(229, 130, 131, 0.24); --c-yellow: rgba(242, 228, 157, 0.2); --c-green: rgba(206, 231, 170, 0.2); --c-teal: rgba(179, 227, 223, 0.18);
+      --lane-gray: rgba(255, 255, 255, 0.03); --lane-yellow: rgba(242, 228, 157, 0.06); --lane-green: rgba(206, 231, 170, 0.06);
       --t-gray: #3f4245;
       --t-coral: rgba(229, 130, 131, 0.26); --t-yellow: rgba(242, 228, 157, 0.2); --t-green: rgba(206, 231, 170, 0.2); --t-teal: rgba(179, 227, 223, 0.2);
       --f-gray: rgba(255, 255, 255, 0.86);
@@ -75,56 +76,67 @@
 
   .page { max-width: 1400px; margin: 0 auto; padding: 0 72px 120px; }
   .page-icon { display: block; width: 104px; height: 104px; margin: 44px 0 0 -4px; font-size: 88px; line-height: 104px; user-select: none; }
-  .title { margin: 18px 0 14px; font-size: 40px; font-weight: 700; line-height: 1.2; }
+  .title { margin: 18px 0 10px; font-size: 40px; font-weight: 700; line-height: 1.2; }
   /* What to say in Chat: one line under the title */
-  .head { margin: 0 0 26px; }
-  .head .title { margin-bottom: 10px; }
-  .say { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0; color: var(--muted); font-size: 14px; }
+  .say { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 22px; color: var(--muted); font-size: 14px; }
   .say b { height: 24px; padding: 0 8px; border-radius: 4px; background: var(--hover); color: var(--text); font-weight: 500; line-height: 24px; white-space: nowrap; }
-  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; align-items: start; }
 
-  /* Lanes: ideas waiting, drafts to post, and what's out */
-  .lane { min-width: 0; }
-  .callout { display: flex; align-items: center; gap: 10px; padding: 12px 16px 12px 14px; border-radius: 6px; }
-  .callout.yellow { background: var(--c-yellow); }
-  .callout.coral { background: var(--c-coral); }
-  .callout.green { background: var(--c-green); }
-  .callout h2 { margin: 0; font-size: 20px; font-weight: 600; line-height: 1.3; }
-  .count { margin-left: auto; color: var(--muted); font-size: 14px; }
-  .emoji { width: 22px; flex: none; font-size: 18px; line-height: 1; text-align: center; }
-  .cards { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
-  .empty { margin: 14px 2px; color: var(--muted); font-size: 14px; }
-  .more { height: 28px; margin-top: 8px; padding: 0 8px; border-radius: 4px; color: var(--muted); font-size: 14px; }
+  /* Views, like a Notion database's tabs */
+  .views { display: flex; align-items: center; gap: 2px; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
+  .tab:hover { background: var(--hover); }
+  .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
+
+  /* Board: one tinted column per status, each with a status pill on top */
+  .board { display: grid; grid-template-columns: repeat(3, minmax(0, 360px)); gap: 12px; align-items: start; overflow-x: auto; }
+  .lane { min-width: 0; padding: 6px 6px 8px; border-radius: 8px; background: var(--lane); }
+  .lane.gray { --lane: var(--lane-gray); }
+  .lane.yellow { --lane: var(--lane-yellow); }
+  .lane.green { --lane: var(--lane-green); }
+  .lane-head { display: flex; align-items: center; gap: 8px; height: 28px; padding: 0 4px; }
+  .count { color: var(--faint); font-size: 13px; }
+  .cards { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+  .empty { margin: 6px 6px 4px; color: var(--faint); font-size: 13px; }
+  .more { height: 28px; margin-top: 6px; padding: 0 8px; border-radius: 4px; color: var(--muted); font-size: 13px; }
   .more:hover { background: var(--hover); }
 
-  /* Cards, like the Workout Tracker's */
-  .card { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 10px 12px 11px; border-radius: 6px; background: var(--card); box-shadow: var(--card-shadow); }
-  .card-head { display: flex; align-items: flex-start; gap: 8px; }
-  .card-title { flex: 1; min-width: 0; margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+  .card { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 9px 10px 10px; border-radius: 6px; background: var(--card); box-shadow: var(--card-shadow); }
+  .card-head { display: flex; align-items: flex-start; gap: 7px; }
+  .card-icon { flex: none; width: 18px; font-size: 14px; line-height: 20px; text-align: center; }
+  .card-title { flex: 1; min-width: 0; margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; overflow-wrap: anywhere; }
   a.card-title { text-decoration: none; }
   a.card-title:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
-  .plan { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
-  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
-  .meta:empty { display: none; }
-  .when { color: var(--faint); font-size: 12px; }
-  .drop { display: grid; place-items: center; flex: none; width: 22px; height: 22px; margin: -1px -4px 0 0; border-radius: 4px; color: var(--faint); opacity: 0; }
+  .plan { display: -webkit-box; margin: 0; overflow: hidden; color: var(--muted); font-size: 13px; line-height: 1.45; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .when { color: var(--muted); font-size: 12px; }
+  .drop { display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 4px; color: var(--faint); opacity: 0; }
   .card:hover .drop, .drop:focus-visible { opacity: 1; }
   .drop:hover { background: var(--hover); color: var(--muted); }
   /* One click marks a draft posted; clicking again takes it back */
-  .check { display: grid; place-items: center; flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-strong); color: transparent; }
+  .check { display: grid; place-items: center; flex: none; width: 16px; height: 16px; margin: 2px 1px 0; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-strong); color: transparent; }
   .check:hover { box-shadow: inset 0 0 0 1.5px var(--d-green); color: var(--d-green); }
   .check.on { background: var(--d-green); box-shadow: none; color: #fff; }
-  .check .i { width: 11px; height: 11px; }
+  .check .i { width: 10px; height: 10px; }
 
   .tag { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; height: 20px; padding: 0 6px; border-radius: 3px; background: var(--tb); color: var(--tf); font-size: 12px; line-height: 20px; white-space: nowrap; }
   .tag > span { overflow: hidden; text-overflow: ellipsis; }
-  .tag.status { padding: 0 8px 0 7px; border-radius: 10px; }
+  .tag.status { padding: 0 8px 0 7px; border-radius: 10px; font-size: 13px; }
   .tag.status::before { content: ""; width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--td); }
   .k-gray { --tb: var(--t-gray); --tf: var(--f-gray); --td: var(--d-gray); }
-  .k-coral { --tb: var(--t-coral); --tf: var(--f-coral); --td: var(--d-coral); }
   .k-yellow { --tb: var(--t-yellow); --tf: var(--f-yellow); --td: var(--d-yellow); }
   .k-green { --tb: var(--t-green); --tf: var(--f-green); --td: var(--d-green); }
   .k-teal { --tb: var(--t-teal); --tf: var(--f-teal); --td: var(--d-teal); }
+
+  /* All posts: a plain database table */
+  .tbl-scroll { overflow-x: auto; }
+  table.db { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px; }
+  .db th { height: 34px; padding: 0 8px; border-bottom: 1px solid var(--line); color: var(--muted); font-weight: 400; text-align: left; white-space: nowrap; }
+  .db td { height: 38px; padding: 4px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .db td.name { font-weight: 500; }
+  .db td.name a { text-decoration: none; }
+  .db td.name a:hover { text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+  .db td.date { color: var(--muted); white-space: nowrap; }
+  .db .tag.status { font-size: 12px; }
 
   /* Confirm dialog: StashBase blocks the browser's own confirm(), so it's built into the page */
   .modal { position: fixed; inset: 0; z-index: 70; display: grid; place-items: center; padding: 16px; background: rgba(15, 15, 15, 0.4); }
@@ -142,8 +154,10 @@
     .drop { opacity: 1; }
   }
   @media (max-width: 1040px) {
-    .board { grid-template-columns: minmax(0, 1fr); }
     .page { padding: 0 40px 96px; }
+  }
+  @media (max-width: 760px) {
+    .board { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 640px) {
     .page { padding: 0 18px 80px; }
@@ -166,25 +180,29 @@
 
   <main class="page">
     <div class="page-icon" role="img" aria-label="Notepad">🗒️</div>
-    <div class="head">
-      <h1 class="title">LinkedIn Ghostwriter</h1>
-      <p class="say" id="start"></p>
+    <h1 class="title">LinkedIn Ghostwriter</h1>
+    <p class="say" id="start"></p>
+
+    <div class="views" role="tablist" aria-label="Views">
+      <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
+      <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
     </div>
 
-    <div class="board">
-      <section class="lane" aria-labelledby="h-ideas">
-        <div class="callout yellow"><span class="emoji" aria-hidden="true">💡</span><h2 id="h-ideas">Ideas</h2><span class="count" id="n-ideas"></span></div>
+    <div class="board" id="board">
+      <section class="lane gray" aria-label="Ideas">
+        <div class="lane-head"><span class="tag status k-gray">Ideas</span><span class="count" id="n-ideas"></span></div>
         <div id="ideas"></div>
       </section>
-      <section class="lane" aria-labelledby="h-drafts">
-        <div class="callout coral"><span class="emoji" aria-hidden="true">✍️</span><h2 id="h-drafts">Drafts</h2><span class="count" id="n-drafts"></span></div>
+      <section class="lane yellow" aria-label="Drafts">
+        <div class="lane-head"><span class="tag status k-yellow">Drafts</span><span class="count" id="n-drafts"></span></div>
         <div id="drafts"></div>
       </section>
-      <section class="lane" aria-labelledby="h-posted">
-        <div class="callout green"><span class="emoji" aria-hidden="true">✅</span><h2 id="h-posted">Posted</h2><span class="count" id="n-posted"></span></div>
+      <section class="lane green" aria-label="Posted">
+        <div class="lane-head"><span class="tag status k-green">Posted</span><span class="count" id="n-posted"></span></div>
         <div id="posted"></div>
       </section>
     </div>
+    <div id="table" hidden></div>
   </main>
 
   <div class="modal" id="modal" hidden>
@@ -208,12 +226,13 @@
   const DATA_PATH = "./assets/posts.json";
   const POSTS_DIR = "posts/";
   const POSTED_SHOWN = 6;
-  const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const PATHS = {
     x: '<path d="m4.5 4.5 7 7M11.5 4.5l-7 7"/>',
     check: '<path d="m3 8.5 3.2 3L13 4.5"/>',
+    board: '<rect x="2" y="3" width="3.4" height="10" rx="1"/><rect x="6.3" y="3" width="3.4" height="7" rx="1"/><rect x="10.6" y="3" width="3.4" height="8.5" rx="1"/>',
+    table: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M2 9.8h12M6.5 6.5V13"/>',
   };
-  const icon = (name) => `<svg class="i" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[name]}</svg>`;
+  const icon = (name, width = 1.6) => `<svg class="i" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[name]}</svg>`;
 
   const $ = (selector) => document.querySelector(selector);
   const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -222,18 +241,16 @@
   const str = (value) => (typeof value === "string" ? value : "");
   const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
 
-  // Dates are local calendar days, never times.
+  // Dates are local calendar days, never times, written out the way Notion does: November 4, 2026.
   const parse = (s) => {
     const [y, m, d] = s.split("-").map(Number);
     return new Date(y, m - 1, d);
   };
   const keyOf = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-  const short = (s) => {
-    const d = parse(s);
-    return `${MONTHS[d.getMonth()]} ${d.getDate()}${d.getFullYear() === new Date().getFullYear() ? "" : `, ${d.getFullYear()}`}`;
-  };
+  const longDate = (s) => parse(s).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   // Newest first; anything without a date goes last.
   const newestFirst = (key) => (a, b) => (b[key] || "").localeCompare(a[key] || "");
+  const outDay = (p) => (isDate(p.posted) ? p.posted : p.date);
 
   // Each idea and post keeps `at`, its place in the file, so the page changes exactly that entry.
   function normalize(raw) {
@@ -269,6 +286,7 @@
   let saveTimer = 0;
   let queue = Promise.resolve();
   let toastKind = "";
+  let view = "board";
   let allPosted = false;
 
   /* ---------- Saving: each change goes to the shared draft at once, and to the file after a short pause ---------- */
@@ -328,40 +346,43 @@
 
   /* ---------- Views ---------- */
 
-  function renderNote() {
+  function renderSay() {
     // "Set me up" only while the template's example is still here.
     const steps = [data.example && "Set me up.", "I have an idea: …", "Write about …"].filter(Boolean);
     $("#start").innerHTML = `<span>Say in Chat</span>${steps.map((say) => `<b>“${esc(say)}”</b>`).join("")}`;
   }
 
-  const postLink = (p) => (p.file
-    ? `<a class="card-title" href="${POSTS_DIR}${encodeURIComponent(p.file)}">${esc(p.title)}</a>`
-    : `<p class="card-title">${esc(p.title)}</p>`);
+  const postLink = (p, cls) => (p.file
+    ? `<a class="${cls}" href="${POSTS_DIR}${encodeURIComponent(p.file)}">${esc(p.title)}</a>`
+    : `<span class="${cls}">${esc(p.title)}</span>`);
   const seriesTag = (name) => (name ? `<span class="tag k-teal" title="${esc(name)}"><span>${esc(name)}</span></span>` : "");
+  const statusTag = (p) => (p.posted ? '<span class="tag status k-green">Posted</span>' : '<span class="tag status k-yellow">Draft</span>');
 
   function ideaCard(i) {
     const written = i.series ? data.posts.filter((p) => p.series === i.idea).length : 0;
     return `<div class="card">
       <div class="card-head">
+        <span class="card-icon" aria-hidden="true">💡</span>
         <p class="card-title">${esc(i.idea)}</p>
         <button type="button" class="drop" data-drop="${i.at}" aria-label="Drop this idea" title="Drop this idea">${icon("x")}</button>
       </div>
-      ${i.plan ? `<p class="plan">${esc(i.plan)}</p>` : ""}
-      <div class="meta">${i.series ? `<span class="tag k-teal">Series · ${written} written</span>` : ""}${i.date ? `<span class="when">Added ${esc(short(i.date))}</span>` : ""}</div>
+      ${i.plan ? `<p class="plan" title="${esc(i.plan)}">${esc(i.plan)}</p>` : ""}
+      ${i.series ? `<div class="tags"><span class="tag k-teal">Series · ${written} written</span></div>` : ""}
+      ${i.date ? `<span class="when">${esc(longDate(i.date))}</span>` : ""}
     </div>`;
   }
 
   function postCard(p) {
     const on = !!p.posted;
     const label = on ? "Mark as not posted" : "Mark as posted";
-    const status = on ? `<span class="tag status k-green">${p.posted === true ? "Posted" : `Posted ${esc(short(p.posted))}`}</span>` : "";
-    const written = !on && p.date ? `<span class="when">Written ${esc(short(p.date))}</span>` : "";
+    const day = on ? (isDate(p.posted) ? p.posted : "") : p.date;
     return `<div class="card">
       <div class="card-head">
-        <button type="button" class="check${on ? " on" : ""}" data-check="${p.at}" aria-pressed="${on}" aria-label="${label}" title="${label}">${icon("check")}</button>
-        ${postLink(p)}
+        <button type="button" class="check${on ? " on" : ""}" data-check="${p.at}" aria-pressed="${on}" aria-label="${label}" title="${label}">${icon("check", 2)}</button>
+        ${postLink(p, "card-title")}
       </div>
-      <div class="meta">${status}${seriesTag(p.series)}${written}</div>
+      ${p.series ? `<div class="tags">${seriesTag(p.series)}</div>` : ""}
+      ${day ? `<span class="when">${esc(longDate(day))}</span>` : ""}
     </div>`;
   }
 
@@ -369,11 +390,9 @@
     $(`#${id}`).innerHTML = items.length ? `<div class="cards">${items.map(card).join("")}</div>${more}` : `<p class="empty">${empty}</p>`;
   }
 
-  function render() {
-    renderNote();
+  function renderBoard() {
     const drafts = data.posts.filter((p) => !p.posted).sort(newestFirst("date"));
     // Posted: newest out first; one posted on an unknown day goes by the day it was written.
-    const outDay = (p) => (isDate(p.posted) ? p.posted : p.date);
     const posted = data.posts.filter((p) => p.posted).sort((a, b) => outDay(b).localeCompare(outDay(a)));
     const shown = allPosted ? posted : posted.slice(0, POSTED_SHOWN);
     const more = posted.length > POSTED_SHOWN
@@ -385,6 +404,30 @@
     lane("ideas", data.ideas, ideaCard, "No ideas yet. Say “I have an idea: …” in Chat.");
     lane("drafts", drafts, postCard, "Nothing waiting. Say “Write about …” with one of your ideas.");
     lane("posted", shown, postCard, "Nothing posted yet.", more);
+  }
+
+  // Every post in one table, drafts first, then newest out first.
+  function renderTable() {
+    const rows = [...data.posts].sort((a, b) => (!!a.posted - !!b.posted) || outDay(b).localeCompare(outDay(a)));
+    $("#table").innerHTML = rows.length ? `<div class="tbl-scroll"><table class="db">
+      <thead><tr><th>Post</th><th>Status</th><th>Series</th><th>Written</th><th>Posted</th></tr></thead>
+      <tbody>${rows.map((p) => `<tr>
+        <td class="name">${postLink(p, "")}</td>
+        <td>${statusTag(p)}</td>
+        <td>${seriesTag(p.series)}</td>
+        <td class="date">${p.date ? esc(longDate(p.date)) : ""}</td>
+        <td class="date">${isDate(p.posted) ? esc(longDate(p.posted)) : ""}</td>
+      </tr>`).join("")}</tbody>
+    </table></div>` : '<p class="empty">No posts yet.</p>';
+  }
+
+  function render() {
+    renderSay();
+    document.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === view)));
+    $("#board").hidden = view !== "board";
+    $("#table").hidden = view !== "table";
+    renderBoard();
+    renderTable();
   }
 
   /* ---------- Changes from the page ---------- */
@@ -440,9 +483,14 @@
     if (check) return togglePosted(Number(check.dataset.check));
     const drop = t.closest("[data-drop]");
     if (drop) return dropIdea(Number(drop.dataset.drop));
+    const tab = t.closest("[data-view]");
+    if (tab) {
+      view = tab.dataset.view;
+      return render();
+    }
     if (t.closest("[data-more]")) {
       allPosted = !allPosted;
-      render();
+      renderBoard();
     }
   });
 
@@ -489,6 +537,7 @@
   });
 
   async function start() {
+    document.querySelectorAll("[data-icon]").forEach((n) => n.insertAdjacentHTML("afterbegin", icon(n.dataset.icon, 1.4)));
     try {
       if (api && typeof api.load === "function") {
         raw = await api.load(DATA_PATH);
