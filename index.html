@@ -86,11 +86,9 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
-  /* The inbox is one click away: a mailbox with how many days are in it */
-  .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 8px 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--text); font-size: 14px; text-decoration: none; white-space: nowrap; }
+  /* The inbox is one click away. No count: it's a log, not something waiting to be read */
+  .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--text); font-size: 14px; text-decoration: none; white-space: nowrap; }
   .inbox-btn:hover { background: var(--hover); }
-  .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--d-coral); color: #fff; font-size: 11px; font-weight: 600; line-height: 18px; text-align: center; }
-  .badge:empty { display: none; }
 
   /* Sub-page top bar, Notion style: stays at the top while scrolling, with a back button and the page path. Hidden on home. */
   .topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 4px; height: 44px; padding: 0 12px; background: var(--bg); view-transition-name: topbar; }
@@ -271,7 +269,7 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
-      <a class="inbox-btn" href="#/inbox" data-route><span aria-hidden="true">📬</span>Inbox<span class="badge" id="n-inbox"></span></a>
+      <a class="inbox-btn" href="#/inbox" data-route><span aria-hidden="true">📬</span>Inbox</a>
     </div>
 
     <div class="board" id="board">
@@ -542,7 +540,6 @@
     $("#table").hidden = view !== "table";
     renderBoard();
     renderTable();
-    $("#n-inbox").textContent = data.inbox.length || "";
     if (route === "inbox") renderInbox();
     if (side) renderSide();
   }
