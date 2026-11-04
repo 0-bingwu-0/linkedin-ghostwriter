@@ -16,7 +16,7 @@ Some days you just want to write down what happened. Say **"Today I …"** and t
 
 Open the dashboard, `index.html`, to see what's next: ideas waiting to be written, drafts waiting to go out, and what you've posted.
 
-The template comes with an example: a software developer a month into contributing to open source, with notes on that work, a few ideas including a series, a draft, some past posts, and a few days in the inbox. Setup replaces it with yours.
+The template comes with an example: a software developer a month into contributing to open source, with notes on that work, a few ideas including a series, a few drafts, some past posts, and a few days in the inbox. Setup replaces it with yours.
 
 ## The dashboard
 

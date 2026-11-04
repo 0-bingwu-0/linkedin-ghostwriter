@@ -2,14 +2,20 @@
   "schemaVersion": 1,
   "example": true,
   "ideas": [
-    {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "plan": "A series: an intro, three examples, and a wrap-up. Written so far: the intro and the verifier. The other two examples aren't picked yet."},
+    {"date": "2026-11-04", "idea": "Done means something different in someone else's project", "plan": "A series: an intro, three examples, and a wrap-up. Written so far: the intro, the verifier, and the docs PR. The third example isn't picked yet."},
     {"date": "2026-11-02", "idea": "Reading a stranger's codebase is a skill nobody teaches", "plan": ""},
-    {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from the data library PR I was asked to split in two, and how the smaller half was merged the same afternoon."}
+    {"date": "2026-10-30", "idea": "Small PRs get merged, big ones get discussed", "plan": "Start from the data library PR I was asked to split in two, and how the smaller half was merged the same afternoon."},
+    {"date": "2026-10-27", "idea": "Why I went wide instead of picking one project", "plan": "Start from the four projects I picked in my first month, each in a different language, with different maintainers."},
+    {"date": "2026-10-20", "idea": "What I'd tell myself before my first open-source PR", "plan": ""}
   ],
   "posts": [
     {"title": "The verifier that passed when it should have failed", "file": "2026-11-04-verifier-that-passed-when-it-should-have-failed.md", "posted": false},
+    {"title": "The docs PR nobody asked for", "file": "2026-11-04-the-docs-pr-nobody-asked-for.md", "posted": false},
     {"title": "My first month sending PRs into other people's code", "file": "2026-11-04-first-month-sending-prs.md", "posted": true},
+    {"title": "Read the tests before the README", "file": "2026-11-03-read-the-tests-before-the-readme.md", "posted": false},
     {"title": "I let an AI assistant write my tests for a week", "file": "2026-10-14-ai-assistant-wrote-my-tests-for-a-week.md", "posted": true},
-    {"title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": true}
+    {"title": "I cut my side project in half, and people finally used it", "file": "2026-09-22-cut-my-side-project-in-half.md", "posted": true},
+    {"title": "I finally learned to use the debugger", "file": "2026-09-08-i-finally-learned-the-debugger.md", "posted": true},
+    {"title": "The review comment I still think about", "file": "2026-08-25-the-review-comment-i-still-think-about.md", "posted": true}
   ]
 }
