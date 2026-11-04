@@ -11,3 +11,14 @@ When I tell you one, in one go:
 When I answer, add it to the idea as its `plan`, in a few words. If I want to write it now, go to [write.md](write.md).
 
 If I plan it as a series, write the plan into the idea: how many posts, what each covers, and which are already written.
+
+## When I ask what to post
+
+When I don't have an idea and ask what to post, like "What should I post?":
+
+* Read my inbox (the last few weeks is plenty), my work notes in `context/work/`, my ideas on the dashboard, the posting angle in [profile.md](../context/profile.md), and my recent posts in `posts/`.
+* Suggest two or three topics, only from what's there. Don't bring in general topics that aren't about my work. For each, a sentence on how I could tell it and where it comes from, like a day in my inbox or a project in my work notes. An idea already waiting on the dashboard can be one of them.
+* Don't repeat what my recent posts already said. Building on one is fine.
+* If there's nothing to go on, ask in one question what I've been working on lately.
+
+Add the one I pick to my ideas, as above. If I want to write it now, go to [write.md](write.md).

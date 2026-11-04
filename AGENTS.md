@@ -22,6 +22,7 @@ My instructions will be short. When I give you a task, read the matching workflo
 | --- | --- | --- |
 | Set me up | [workflows/setup.md](workflows/setup.md) | Ask me a few questions, set up my profile, and save my past posts |
 | Tell you about my day | [workflows/daily.md](workflows/daily.md) | Save it to my inbox and record what's new |
+| Ask what to post | [workflows/idea.md](workflows/idea.md#when-i-ask-what-to-post) | Suggest two or three topics from my own material |
 | Tell you an idea, or plan a series | [workflows/idea.md](workflows/idea.md) | Save it, and ask how I plan to write it if that's not clear |
 | Write an idea, or edit a draft | [workflows/write.md](workflows/write.md) | Write or edit the LinkedIn post and save it |
 | Tell you I posted one, or drop an idea | [workflows/maintain.md](workflows/maintain.md) | Update the dashboard |
