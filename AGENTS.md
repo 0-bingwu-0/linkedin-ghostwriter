@@ -21,6 +21,7 @@ My instructions will be short. When I give you a task, read the matching workflo
 | I say | Read first | You do in one go |
 | --- | --- | --- |
 | Set me up | [workflows/setup.md](workflows/setup.md) | Ask me a few questions, set up my profile, and save my past posts |
+| Tell you about my day | [workflows/daily.md](workflows/daily.md) | Save it to my inbox and record what's new |
 | Tell you an idea, or plan a series | [workflows/idea.md](workflows/idea.md) | Save it, and ask how I plan to write it if that's not clear |
 | Write an idea, or edit a draft | [workflows/write.md](workflows/write.md) | Write or edit the LinkedIn post and save it |
 | Tell you I posted one, or drop an idea | [workflows/maintain.md](workflows/maintain.md) | Update the dashboard |
@@ -29,7 +30,7 @@ Whatever we're doing, record what I tell you about myself and my work, as in [Re
 
 ## Writing for me
 
-Write as me, in my voice. First person is fine. My feelings and opinions come only from what I tell you, [profile.md](context/profile.md), and my past posts. Facts about my work come only from my work notes in `context/work/`, my past posts, and what I tell you or link you to, like a PR. Don't make anything up. A post starts from my idea and needs real examples from my work to back it up. When my work notes don't have them, ask me, as in [write.md](workflows/write.md). If I don't have them, write from public facts and my views instead.
+Write as me, in my voice. First person is fine. My feelings and opinions come only from what I tell you, [profile.md](context/profile.md), and my past posts. Facts about my work come only from my work notes in `context/work/`, my inbox, my past posts, and what I tell you or link you to, like a PR. Don't make anything up. A post starts from my idea and needs real examples from my work to back it up. When my work notes don't have them, ask me, as in [write.md](workflows/write.md). If I don't have them, write from public facts and my views instead.
 
 Follow the writing style and the things to avoid in [profile.md](context/profile.md). On top of that, always:
 
@@ -65,4 +66,4 @@ The one time to ask first: when it conflicts with what's already recorded, like 
 
 ### Dashboard
 
-The dashboard is `index.html`, and its data is `assets/posts.json`: my ideas waiting to be written, and the list of my posts. Keep it current as in [maintain.md](workflows/maintain.md). The posts themselves stay in `posts/`, and the dashboard links to them. I can mark a post posted or drop an idea on the page too. You don't change `index.html` unless I ask.
+The dashboard is `index.html`, and its data is `assets/posts.json`: my ideas waiting to be written, the list of my posts, and my inbox, which lives only there. Keep it current as in [maintain.md](workflows/maintain.md). The posts themselves stay in `posts/`, and the dashboard links to them. I can mark a post posted or drop an idea on the page too. You don't change `index.html` unless I ask.

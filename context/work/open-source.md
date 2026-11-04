@@ -18,7 +18,15 @@ Checks that a model is the one it claims to be before it's used, partly by compa
 * The fix was a few lines. The maintainer asked for a test showing the old behavior was wrong, and for the error to go through the project's own error handling instead of a new check. That took longer than the fix.
 * Merged after two rounds of review.
 
+## Data library
+
+* First PR: a sort order that didn't match the rest of the file. Twenty minutes to write, two days to get a review.
+* The maintainer asked me to split a bigger PR in two. The smaller half was merged the same afternoon.
+
+## Healthcare app frontend
+
+* Getting it running locally took two hours. I wrote the steps down as I went and opened a docs PR with them.
+
 ## Not tied to a project yet
 
 * A duplicate entry in a YAML export. A small cleanup.
-* A sort order that didn't match the rest of the file. A small cleanup.

@@ -86,8 +86,49 @@
   .tab { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; border-radius: 14px; color: var(--muted); font-size: 14px; white-space: nowrap; }
   .tab:hover { background: var(--hover); }
   .tab[aria-selected="true"] { background: var(--hover); color: var(--text); font-weight: 500; }
+  /* The inbox is one click away: a mailbox with how many days are in it */
+  .inbox-btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; margin-left: auto; padding: 0 8px 0 10px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--text); font-size: 14px; text-decoration: none; white-space: nowrap; }
+  .inbox-btn:hover { background: var(--hover); }
+  .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--d-coral); color: #fff; font-size: 11px; font-weight: 600; line-height: 18px; text-align: center; }
+  .badge:empty { display: none; }
 
-  /* An idea opens from the right, over half the screen, with its plan */
+  /* Sub-page top bar, Notion style: stays at the top while scrolling, with a back button and the page path. Hidden on home. */
+  .topbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; gap: 4px; height: 44px; padding: 0 12px; background: var(--bg); view-transition-name: topbar; }
+  .topbar .icon-btn { color: var(--muted); }
+  .topbar .icon-btn:hover { color: var(--text); }
+  .crumbs { display: flex; align-items: center; min-width: 0; color: var(--muted); font-size: 14px; }
+  .crumb { display: inline-flex; align-items: center; gap: 6px; min-width: 0; height: 26px; padding: 0 6px; border-radius: 4px; color: inherit; text-decoration: none; white-space: nowrap; }
+  a.crumb:hover { background: var(--hover); color: var(--text); }
+  .crumb-sep { margin: 0 2px; color: var(--faint); }
+
+  /* The inbox page: every day, newest first */
+  .sub { max-width: 780px; margin: 0 auto; }
+  .sub-icon { margin-top: 36px; font-size: 64px; line-height: 1.1; }
+  .sub .title { margin: 14px 0 10px; }
+  .days { margin: 8px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .day-row { display: flex; align-items: baseline; gap: 16px; width: 100%; padding: 11px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+  .day-row:hover { background: var(--hover); }
+  .day-row[aria-expanded="true"] { background: var(--lane-yellow); }
+  .day-date { flex: none; width: 150px; color: var(--muted); font-size: 14px; }
+  .day-first { flex: 1; min-width: 0; overflow: hidden; font-size: 15px; text-overflow: ellipsis; white-space: nowrap; }
+  .day-more { flex: none; color: var(--faint); font-size: 13px; }
+  .side-notes { margin: 0; padding-left: 22px; font-size: 15px; line-height: 1.6; }
+  .side-notes li + li { margin-top: 8px; }
+
+  /* Page switches: the inbox slides in from the right while home drifts left, and going back reverses it.
+     The top bar has its own transition name, so it stays put. With reduced motion, pages just crossfade. */
+  @media (prefers-reduced-motion: no-preference) {
+    :root[data-nav]::view-transition-old(root) { animation: 180ms ease-out both slide-out-left; }
+    :root[data-nav]::view-transition-new(root) { animation: 300ms cubic-bezier(0.2, 0, 0, 1) both slide-in-right; }
+    :root[data-nav="back"]::view-transition-old(root) { animation-name: slide-out-right; }
+    :root[data-nav="back"]::view-transition-new(root) { animation-name: slide-in-left; }
+  }
+  @keyframes slide-in-right { from { opacity: 0; transform: translateX(36px); } }
+  @keyframes slide-out-left { to { opacity: 0; transform: translateX(-18px); } }
+  @keyframes slide-in-left { from { opacity: 0; transform: translateX(-18px); } }
+  @keyframes slide-out-right { to { opacity: 0; transform: translateX(36px); } }
+
+  /* An idea, or a day in the inbox, opens from the right over half the screen */
   .side {
     position: fixed;
     top: 0;
@@ -208,11 +249,21 @@
     <button type="button" id="toast-close" aria-label="Close" title="Close">×</button>
   </div>
 
-  <section class="banner" aria-label="Illustration of a lightbulb, a draft on a clipboard, a laptop showing a post, and a little ghost holding a pen">
+  <section class="banner" id="banner" aria-label="Illustration of a lightbulb, a draft on a clipboard, a laptop showing a post, and a little ghost holding a pen">
     <img src="./assets/banner.svg" width="2172" height="724" alt="" fetchpriority="high" decoding="async">
   </section>
 
+  <header class="topbar" id="topbar" hidden>
+    <a class="icon-btn" href="#/" data-route aria-label="Back to LinkedIn Ghostwriter" title="Back to LinkedIn Ghostwriter"><span data-icon="arrowL"></span></a>
+    <nav class="crumbs" aria-label="Breadcrumbs">
+      <a class="crumb" href="#/" data-route><span aria-hidden="true">👻</span>LinkedIn Ghostwriter</a>
+      <span class="crumb-sep" aria-hidden="true">/</span>
+      <span class="crumb" aria-current="page"><span aria-hidden="true">📬</span>Inbox</span>
+    </nav>
+  </header>
+
   <main class="page">
+    <div id="home">
     <div class="page-icon" role="img" aria-label="Ghost">👻</div>
     <h1 class="title">LinkedIn Ghostwriter</h1>
     <p class="say" id="start"></p>
@@ -220,6 +271,7 @@
     <div class="views" role="tablist" aria-label="Views">
       <button type="button" role="tab" class="tab" data-view="board"><span data-icon="board"></span>Pipeline</button>
       <button type="button" role="tab" class="tab" data-view="table"><span data-icon="table"></span>All posts</button>
+      <a class="inbox-btn" href="#/inbox" data-route><span aria-hidden="true">📬</span>Inbox<span class="badge" id="n-inbox"></span></a>
     </div>
 
     <div class="board" id="board">
@@ -237,6 +289,8 @@
       </section>
     </div>
     <div id="table" hidden></div>
+    </div>
+    <article class="sub" id="inbox-page" hidden></article>
   </main>
 
   <aside class="side" id="side" aria-label="Idea" inert>
@@ -272,6 +326,7 @@
     close: '<path d="M3.5 3.5 8 8l-4.5 4.5M8.5 3.5 13 8l-4.5 4.5"/>',
     trash: '<path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.6 8.5h5.8l.6-8.5"/>',
     check: '<path d="m3 8.5 3.2 3L13 4.5"/>',
+    arrowL: '<path d="M13 8H3M7 4 3 8l4 4"/>',
     board: '<rect x="2" y="3" width="3.4" height="10" rx="1"/><rect x="6.3" y="3" width="3.4" height="7" rx="1"/><rect x="10.6" y="3" width="3.4" height="8.5" rx="1"/>',
     table: '<rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6.5h12M2 9.8h12M6.5 6.5V13"/>',
   };
@@ -282,6 +337,7 @@
   const isObj = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
   const arr = (value) => (Array.isArray(value) ? value : []);
   const str = (value) => (typeof value === "string" ? value : "");
+  const isText = (value) => typeof value === "string";
   const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s);
 
   // Dates are local calendar days, never times, written out the way Notion does: November 4, 2026.
@@ -314,6 +370,10 @@
         file: str(p.file).trim(),
         posted: p.posted === true || isDate(p.posted),
       } : null)).filter((p) => p && p.title),
+      // One entry per day, newest first; if a day is listed twice, the later one wins.
+      inbox: [...new Map(arr(src.inbox).filter((d) => isObj(d) && isDate(d.date))
+        .map((d) => [d.date, { date: d.date, notes: arr(d.notes).filter((n) => isText(n) && n.trim()) }])).values()]
+        .filter((d) => d.notes.length).sort(newestFirst("date")),
     };
   }
 
@@ -330,7 +390,8 @@
   let toastKind = "";
   let view = "board";
   let allPosted = false;
-  let openAt = null; // the idea open on the right, by its place in the file
+  let side = null; // what's open on the right: { kind: "idea", at } or { kind: "day", date }
+  let route = "home"; // "home" or "inbox"
 
   /* ---------- Saving: each change goes to the shared draft at once, and to the file after a short pause ---------- */
 
@@ -391,7 +452,7 @@
 
   function renderSay() {
     // "Set me up" only while the template's example is still here.
-    const steps = [data.example && "Set me up.", "I have an idea: …", "Write about …"].filter(Boolean);
+    const steps = [data.example && "Set me up.", "Today I …", "I have an idea: …", "Write about …"].filter(Boolean);
     $("#start").innerHTML = `<span aria-hidden="true">💬</span><span>Say in Chat</span>${steps.map((say) => `<b>“${esc(say)}”</b>`).join("")}`;
   }
 
@@ -402,13 +463,24 @@
 
   // An idea shows just its line on the board; click it to see the plan on the right.
   function ideaCard(i) {
-    return `<button type="button" class="card" data-idea="${i.at}" aria-expanded="${openAt === i.at}">
+    return `<button type="button" class="card" data-idea="${i.at}" aria-expanded="${side?.kind === "idea" && side.at === i.at}">
       <span class="card-head"><span class="card-icon" aria-hidden="true">💡</span><span class="card-title">${esc(i.idea)}</span></span>
     </button>`;
   }
 
   function renderSide() {
-    const i = data.ideas.find((x) => x.at === openAt);
+    $("[data-drop-open]").hidden = side.kind !== "idea";
+    sideEl.setAttribute("aria-label", side.kind === "idea" ? "Idea" : "Day");
+    if (side.kind === "day") {
+      const d = data.inbox.find((x) => x.date === side.date);
+      if (!d) return closeSide();
+      $("#side-body").innerHTML = `
+        <div class="side-icon" aria-hidden="true">📬</div>
+        <h2 class="side-title">${esc(parse(d.date).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" }))}</h2>
+        <ul class="side-notes">${d.notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul>`;
+      return;
+    }
+    const i = data.ideas.find((x) => x.at === side.at);
     if (!i) return closeSide();
     $("#side-body").innerHTML = `
       <div class="side-icon" aria-hidden="true">💡</div>
@@ -470,8 +542,70 @@
     $("#table").hidden = view !== "table";
     renderBoard();
     renderTable();
-    if (openAt !== null) renderSide();
+    $("#n-inbox").textContent = data.inbox.length || "";
+    if (route === "inbox") renderInbox();
+    if (side) renderSide();
   }
+
+  /* ---------- The inbox page ---------- */
+
+  function renderInbox() {
+    const say = '<p class="say"><span aria-hidden="true">💬</span><span>Say in Chat</span><b>“Today I …”</b></p>';
+    const rows = data.inbox.map((d) => `<li><button type="button" class="day-row" data-day="${d.date}" aria-expanded="${side?.kind === "day" && side.date === d.date}">
+        <span class="day-date">${esc(longDate(d.date))}</span>
+        <span class="day-first">${esc(d.notes[0])}</span>
+        <span class="day-more">${d.notes.length > 1 ? `+${d.notes.length - 1}` : ""}</span>
+      </button></li>`).join("");
+    $("#inbox-page").innerHTML = `
+      <div class="sub-icon" aria-hidden="true">📬</div>
+      <h1 class="title">Inbox</h1>
+      ${say}
+      ${rows ? `<ol class="days">${rows}</ol>` : '<p class="empty">Nothing here yet. Tell the Agent about your day, and it lands here.</p>'}`;
+  }
+
+  /* ---------- Pages: home, and the inbox one click away ---------- */
+
+  const routeOf = (hash) => (/^#\/inbox\b/.test(hash || "") ? "inbox" : "home");
+  let homeScroll = 0;
+
+  function applyRoute(hash = location.hash) {
+    const next = routeOf(hash);
+    closeSide();
+    if (route === "home" && next !== "home") homeScroll = scrollY;
+    route = next;
+    const onHome = route === "home";
+    $("#home").hidden = !onHome;
+    $("#banner").hidden = !onHome;
+    $("#topbar").hidden = onHome;
+    $("#inbox-page").hidden = onHome;
+    document.title = onHome ? "LinkedIn Ghostwriter" : "Inbox · LinkedIn Ghostwriter";
+    if (onHome) {
+      $("#inbox-page").innerHTML = "";
+      scrollTo(0, homeScroll);
+    } else {
+      renderInbox();
+      scrollTo(0, 0);
+    }
+  }
+
+  // Prefer writing the hash, so the browser's Back works. If the host doesn't allow it, switch directly.
+  // Never history.back(): it could take StashBase itself back a page.
+  function navigate(hash) {
+    try {
+      if (location.hash !== hash) location.hash = hash;
+    } catch {
+      // Ignore it and switch directly below.
+    }
+    if (location.hash !== hash) switchRoute(hash);
+  }
+
+  // Page switches animate through the View Transitions API where it's available, and swap instantly elsewhere.
+  function switchRoute(hash) {
+    if (!document.startViewTransition) return applyRoute(hash);
+    document.documentElement.dataset.nav = routeOf(hash ?? location.hash) === "home" ? "back" : "forward";
+    document.startViewTransition(() => applyRoute(hash)).ready.catch(() => {});
+  }
+  addEventListener("hashchange", () => switchRoute());
 
   /* ---------- Changes from the page ---------- */
 
@@ -518,40 +652,49 @@
     else if (event.target === modalEl) closeModal(false);
   });
   const sideEl = $("#side");
-  function openSide(at) {
-    openAt = at;
+  function openSide(next) {
+    side = next;
     renderSide();
     renderBoard();
+    if (route === "inbox") renderInbox();
     $("#side-body").scrollTop = 0;
     sideEl.classList.add("open");
     sideEl.removeAttribute("inert");
     sideEl.querySelector("[data-close-side]").focus({ preventScroll: true });
   }
   function closeSide() {
-    if (openAt === null && !sideEl.classList.contains("open")) return;
-    openAt = null;
+    if (side === null && !sideEl.classList.contains("open")) return;
+    side = null;
     sideEl.classList.remove("open");
     sideEl.setAttribute("inert", "");
     renderBoard();
+    if (route === "inbox") renderInbox();
   }
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
     if (!modalEl.hidden) closeModal(false);
     else closeSide();
   });
-  // A click anywhere else closes the panel; clicking another idea switches to it.
+  // A click anywhere else closes the panel; clicking another idea or day switches to it.
   document.addEventListener("pointerdown", (event) => {
-    if (openAt !== null && !sideEl.contains(event.target) && !event.target.closest("[data-idea], .modal, .toast")) closeSide();
+    if (side && !sideEl.contains(event.target) && !event.target.closest("[data-idea], [data-day], .modal, .toast")) closeSide();
   });
 
   document.addEventListener("click", (event) => {
     const t = event.target;
     const check = t.closest("[data-check]");
     if (check) return togglePosted(Number(check.dataset.check));
+    const link = t.closest("a[data-route]");
+    if (link) {
+      event.preventDefault();
+      return navigate(link.getAttribute("href"));
+    }
     const idea = t.closest("[data-idea]");
-    if (idea) return openSide(Number(idea.dataset.idea));
+    if (idea) return openSide({ kind: "idea", at: Number(idea.dataset.idea) });
+    const day = t.closest("[data-day]");
+    if (day) return openSide({ kind: "day", date: day.dataset.day });
     if (t.closest("[data-close-side]")) return closeSide();
-    if (t.closest("[data-drop-open]")) return dropIdea(openAt);
+    if (t.closest("[data-drop-open]") && side?.kind === "idea") return dropIdea(side.at);
     const tab = t.closest("[data-view]");
     if (tab) {
       view = tab.dataset.view;
@@ -625,6 +768,7 @@
     raw = isObj(raw) ? raw : {};
     data = normalize(raw);
     render();
+    applyRoute();
   }
 
   start();

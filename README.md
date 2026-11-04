@@ -12,9 +12,11 @@ Open this project in StashBase and tell the Agent:
 2. **"I have an idea: …"** Whenever something about your work strikes you, a sentence is enough, like "I have an idea: working code is only the starting bar in someone else's repo." It saves it to your ideas on the dashboard, and if it isn't clear how you'd tell it, asks how you plan to write it.
 3. **"Write about …"** Name the idea, like "Write about small PRs." It looks for examples in your work notes and asks you for what's missing, like which PR or what broke. What you add is saved to `context/work/`, so you won't have to explain it again. Then it writes the LinkedIn post and saves it to `posts/`, one file per post. Ask for any edits you want, like "Make the opening more casual."
 
+Some days you just want to write down what happened. Say **"Today I …"** and tell it, a few sentences or a messy brain dump. It keeps the day in your inbox and records anything new about your work, so it's there the next time you write.
+
 Open the dashboard, `index.html`, to see what's next: ideas waiting to be written, drafts waiting to go out, and what you've posted.
 
-The template comes with an example: a software developer a month into contributing to open source, with notes on that work, a few ideas including a series, a draft, and some past posts. Setup replaces it with yours.
+The template comes with an example: a software developer a month into contributing to open source, with notes on that work, a few ideas including a series, a draft, some past posts, and a few days in the inbox. Setup replaces it with yours.
 
 ## The dashboard
 
@@ -24,7 +26,7 @@ Everything works in Chat, and you never have to open anything else. The dashboar
 * **Drafts:** posts written but not out yet. Click one to open it.
 * **Posted:** what's out, newest first, past posts included. Tick a draft's circle once you've posted it, or just tell the Agent.
 
-Switch to **All posts** to see every post in one table, with its status and the day it was written.
+Switch to **All posts** to see every post in one table, with its status and the day it was written. **📬 Inbox** opens every day you've told it about, newest first; click a day to read it.
 
 ## Make it yours
 
@@ -41,10 +43,11 @@ You can change things anytime:
 * `context/profile.md`: your background, posting goals, posting angle, and writing style.
 * `posts/`: your LinkedIn posts, past and new, one file each.
 * `workflows/setup.md`: the setup Q&A.
+* `workflows/daily.md`: what happens when you tell it about your day.
 * `workflows/idea.md`: what happens when you tell it an idea.
 * `workflows/write.md`: how to write and edit LinkedIn posts.
 * `AGENTS.md`: the AI's persona, how it writes for you, the task index, and how it keeps your files.
 * `CLAUDE.md`: points Claude Code to `AGENTS.md`.
 * `workflows/maintain.md`: how the Agent keeps the dashboard current, and the format of its data.
 * `index.html`: the dashboard.
-* `assets/`: the dashboard's data and banner.
+* `assets/`: the dashboard's data, with your inbox in it, and its banner.
